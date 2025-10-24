@@ -15,30 +15,15 @@
     margin: 0;
     padding: 0;
   }
-
   h1 {
     color: #ff00ff;
     font-size: 3em;
     text-shadow: 2px 2px #000;
     text-align: center;
     margin-top: 20px;
-    position: relative;
-    z-index: 2000;
   }
-
-  .foreground {
-    position: relative;
-    z-index: 1000;
-    text-align: center;
-    margin: 20px;
-  }
-
-  .contract {
-    font-weight: bold;
-    font-size: 1.3em;
-    margin-bottom: 10px;
-  }
-
+  .foreground { text-align: center; margin: 20px; }
+  .contract { font-weight: bold; font-size: 1.3em; margin-bottom: 10px; }
   .qr-box {
     display: inline-block;
     background: #1e1e1e;
@@ -49,12 +34,7 @@
     max-width: 220px;
     vertical-align: top;
   }
-
-  .qr-box h3 {
-    margin: 0 0 10px 0;
-    font-size: 1.1em;
-  }
-
+  .qr-box h3 { margin: 0 0 10px 0; font-size: 1.1em; }
   .qr-box a, .qr-box button {
     display: block;
     margin: 5px 0;
@@ -67,13 +47,9 @@
     text-align: center;
     cursor: pointer;
   }
-
   .qr-box img {
-    width: 150px;
-    height: 150px;
-    margin: 5px 0;
+    width: 150px; height: 150px; margin: 5px 0;
   }
-
   .token-text {
     font-size: 1.1em;
     font-weight: bold;
@@ -82,23 +58,15 @@
     margin: 15px auto;
     text-shadow: 1px 1px #000;
   }
-
   .container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 20px;
+    display: flex; flex-wrap: wrap;
+    justify-content: center; gap: 20px;
   }
-
-  /* Floating positions for mobile/desktop */
   #walletConnectBox { position: fixed; top: 20px; left: 20px; z-index: 1000; }
   #phantomBuyBox { position: fixed; bottom: 20px; right: 20px; z-index: 1000; }
-
   @media(max-width: 600px){
     #walletConnectBox, #phantomBuyBox { position: static; margin: 10px auto; }
   }
-
 </style>
 </head>
 <body>
@@ -110,7 +78,7 @@
   <p>Available on Raydium.io!</p>
 
   <div class="container">
-    <!-- Raydium Swap QR + Link -->
+    <!-- Raydium Swap -->
     <div class="qr-box">
       <h3>Trade TOPG on Raydium</h3>
       <a href="https://raydium.io/swap/?inputMint=sol&outputMint=B2UTCkP2aErWowwwkNt8HAhMQ8Q9QqrJGKCb5t55cooB&referrer=BksFTNiEpv1Cddv9RBMjQk2yaN6f6BAL73hTNsxdT9mE" target="_blank">Go to Raydium</a>
@@ -124,17 +92,18 @@
       <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://phantom.app/" alt="Phantom Download QR">
     </div>
 
-    <!-- Phantom Wallet Buy TOPG -->
+    <!-- Phantom Buy TOPG -->
     <div class="qr-box" id="phantomBuyBox">
-      <h3>Buy TOPG</h3>
-      <a href="https://phantom.app/ul/buy?to=BksFTNiEpv1Cddv9RBMjQk2yaN6f6BAL73hTNsxdT9mE&amount=1" target="_blank">Send 1 SOL</a>
-      <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://phantom.app/ul/buy?to=BksFTNiEpv1Cddv9RBMjQk2yaN6f6BAL73hTNsxdT9mE&amount=1" alt="Phantom Buy 1 SOL QR">
+      <h3>Buy TOPG (Send 1 SOL)</h3>
+      <a href="https://phantom.app/ul/send?recipient=BksFTNiEpv1Cddv9RBMjQk2yaN6f6BAL73hTNsxdT9mE&amount=1&token=SOL&network=mainnet-beta" target="_blank">Open Phantom</a>
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://phantom.app/ul/send?recipient=BksFTNiEpv1Cddv9RBMjQk2yaN6f6BAL73hTNsxdT9mE&amount=1&token=SOL&network=mainnet-beta" alt="Phantom Send 1 SOL QR">
     </div>
 
     <!-- WalletConnect -->
     <div class="qr-box" id="walletConnectBox">
       <h3>WalletConnect (Mobile)</h3>
       <button id="connectWC">Connect</button>
+      <button id="disconnectWC" style="display:none;">Disconnect</button>
       <p id="wcStatus"></p>
       <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://raydium.io/swap/?inputMint=sol&outputMint=B2UTCkP2aErWowwwkNt8HAhMQ8Q9QqrJGKCb5t55cooB&referrer=BksFTNiEpv1Cddv9RBMjQk2yaN6f6BAL73hTNsxdT9mE" alt="WalletConnect QR">
     </div>
@@ -148,37 +117,43 @@
   </p>
 </div>
 
-<!-- 80s style fighter characters -->
-<div class="character" style="top:100px; left:50px;">🥋</div>
-<div class="character" style="top:250px; left:200px; animation-duration:4s;">👊</div>
-<div class="character" style="top:400px; left:400px; animation-duration:5s;">💥</div>
-
-<!-- Crypto avatars -->
-<img src="https://www.larvalabs.com/cryptopunks/cryptopunk1234.png" class="avatar" style="top:50px; left:600px;">
-<img src="https://www.larvalabs.com/cryptopunks/cryptopunk5678.png" class="avatar" style="top:300px; left:700px; animation-duration:5s;">
-<img src="https://www.larvalabs.com/cryptopunks/cryptopunk9012.png" class="avatar" style="top:500px; left:50px; animation-duration:6s;">
-
 <script src="https://cdn.jsdelivr.net/npm/ethers/dist/ethers.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@walletconnect/web3-provider/dist/umd/index.min.js"></script>
 <script>
-  const SOL_PAYMENT_ADDR = "BksFTNiEpv1Cddv9RBMjQk2yaN6f6BAL73hTNsxdT9mE";
+  let wcProvider;
+  const out = document.getElementById('wcStatus');
+  const connectBtn = document.getElementById('connectWC');
+  const disconnectBtn = document.getElementById('disconnectWC');
 
-  document.getElementById('connectWC').onclick = async () => {
-    const out = document.getElementById('wcStatus');
+  connectBtn.onclick = async () => {
     try {
       const WalletConnectProvider = window.WalletConnectProvider.default;
-      const wcProvider = new WalletConnectProvider({ infuraId:"ENTER_YOUR_INFURA_ID" });
-      out.textContent = 'Opening WalletConnect...';
+      wcProvider = new WalletConnectProvider({ infuraId:"ENTER_YOUR_INFURA_ID" });
+      out.textContent = 'Connecting WalletConnect...';
       await wcProvider.enable();
       const provider = new ethers.providers.Web3Provider(wcProvider);
       const signer = provider.getSigner();
       const address = await signer.getAddress();
       const balance = await provider.getBalance(address);
-      out.textContent = `Connected\nAddress: ${address}\nETH: ${ethers.formatEther(balance)} (Swap 1 SOL on Raydium)`;
-      wcProvider.on && wcProvider.on("disconnect", () => out.textContent='Disconnected');
-    } catch(e){ out.textContent='Error: '+(e.message||e); }
+      out.textContent = `Connected: ${address.slice(0,8)}... Balance: ${ethers.formatEther(balance)} ETH`;
+      connectBtn.style.display = 'none';
+      disconnectBtn.style.display = 'block';
+      wcProvider.on("disconnect", () => {
+        out.textContent = 'Disconnected';
+        connectBtn.style.display = 'block';
+        disconnectBtn.style.display = 'none';
+      });
+    } catch(e){ out.textContent = 'Error: '+(e.message||e); }
+  };
+
+  disconnectBtn.onclick = async () => {
+    if (wcProvider) {
+      await wcProvider.disconnect();
+      out.textContent = 'Disconnected';
+      connectBtn.style.display = 'block';
+      disconnectBtn.style.display = 'none';
+    }
   };
 </script>
-
 </body>
 </html>
