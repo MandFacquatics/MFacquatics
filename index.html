@@ -6,32 +6,27 @@
 <title>MansfieldMEMEisTOPG3000</title>
 <meta name="description" content="Mansfield MEME is TOPG3000 — buy SOL, trade on Raydium, join the meme revolution." />
 <style>
-  :root { --gold: #ffd700; --bg1: #000; --bg2: #ffd700; --step-green: #00ff00; }
-  html,body{height:100%; margin:0; font-family:"Courier New", monospace; background:linear-gradient(135deg,var(--bg1) 50%,var(--bg2) 50%); color:#f0f0f0; overflow-x:hidden;}
+  :root { --gold: #ffd700; --bg1: #000; --bg2: #ffd700; --green:#00ff00; }
+  html,body{height:100%; margin:0; font-family: "Courier New", monospace; background: linear-gradient(135deg, var(--bg1) 50%, var(--bg2) 50%); color:#f0f0f0; overflow-x:hidden;}
   h1{color:#ff00ff; text-align:center; font-size:2.6rem; margin:18px 0; text-shadow:2px 2px #000;}
   .foreground{position:relative; z-index:2; text-align:center; padding:10px 12px;}
   .contract{font-weight:bold; font-size:1.05rem; margin-bottom:8px;}
   .container{display:flex; flex-wrap:wrap; justify-content:flex-start; gap:18px; align-items:flex-start; padding:12px;}
-  .qr-box{background:#1e1e1e; border-radius:12px; padding:12px; width:220px; text-align:center; color:#fff;}
+  .qr-box{background:#1e1e1e; border-radius:12px; padding:12px; width:220px; text-align:center; color:#fff; position:relative;}
   .qr-box h3{margin:0 0 8px 0; font-size:1rem;}
   .qr-box a, .qr-box button{display:block; text-decoration:none; color:#000; background:var(--gold); padding:8px; margin:6px auto; border-radius:6px; font-weight:700; cursor:pointer; width:90%;}
-  .qr-box img{width:150px; height:150px; display:block; margin:8px auto 0 auto;}
-  .token-text{color:var(--step-green); font-weight:bold; max-width:680px; margin:18px auto; text-shadow:1px 1px #000; line-height:1.3;}
+  .qr-box img{width:150px; height:150px; display:block; margin:8px auto 0 auto; cursor:pointer;}
+  .token-text{color:var(--green); font-weight:bold; max-width:680px; margin:18px auto; text-shadow:1px 1px #000; line-height:1.3;}
+
   #walletConnectBox{position:fixed; top:20px; left:20px; z-index:30;}
-  #phantomBuyBox{position:fixed; bottom:20px; right:20px; z-index:30;}
-  @media(max-width:760px){
-    .container{flex-direction:column; align-items:center;}
-    .qr-box{width:90%;}
-    h1{font-size:2rem;}
-    .token-text{max-width:92%;}
-  }
+  @media(max-width:760px){#walletConnectBox{position:static;margin:auto;}.container{justify-content:center;}.qr-box{width:90%;}}
 
   .character{position:absolute; font-size:2.6rem; animation:moveBackForth 3.5s infinite alternate; z-index:1;}
   @keyframes moveBackForth {0%{transform:translateX(0) rotate(-12deg)}25%{transform:translateX(150px) rotate(12deg)}50%{transform:translateX(0) rotate(-12deg)}75%{transform:translateX(-150px) rotate(12deg)}100%{transform:translateX(0) rotate(0)}}
   .avatar{position:absolute; width:140px; height:140px; object-fit:cover; border:2px solid #ff00ff; border-radius:10px; animation:bounce 4s infinite alternate; z-index:1;}
   @keyframes bounce {0%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-40px) rotate(5deg)}100%{transform:translateY(0) rotate(-5deg)}}
 
-  #phantomBuyBox .qr-box { animation:glow 2s infinite ease-in-out;}
+  #phantomBuyBox .qr-box { animation: glow 2s infinite ease-in-out; }
   @keyframes glow {0%{box-shadow:0 0 10px #ffd700; transform:scale(1)}50%{box-shadow:0 0 25px #ffef8a; transform:scale(1.03)}100%{box-shadow:0 0 10px #ffd700; transform:scale(1)}}
 
   .modal-overlay{position:fixed; inset:0; background:rgba(0,0,0,0.6); display:none; align-items:center; justify-content:center; z-index:100;}
@@ -40,18 +35,19 @@
   .modal .close{position:absolute; right:14px; top:10px; background:transparent; border:0; color:#fff; font-size:1.4rem; cursor:pointer;}
   .modal img{width:220px; height:220px; margin:8px auto;}
   .modal .note{font-size:0.9rem; color:#ccc; margin-top:6px;}
+  .step-label{color:var(--green); font-weight:bold; margin:4px 0; display:block;}
 </style>
 </head>
 <body>
 
 <h1>MansfieldMEMEisTOPG3000</h1>
 
-<!-- characters -->
+<!-- Characters -->
 <div class="character" style="top:100px; left:40px;">🥋</div>
 <div class="character" style="top:260px; left:220px; animation-duration:4s;">👊</div>
 <div class="character" style="top:420px; left:420px; animation-duration:5s;">💥</div>
 
-<!-- avatars -->
+<!-- Avatars -->
 <img src="https://www.larvalabs.com/cryptopunks/cryptopunk1234.png" class="avatar" style="top:50px; left:600px;">
 <img src="https://www.larvalabs.com/cryptopunks/cryptopunk5678.png" class="avatar" style="top:300px; left:700px; animation-duration:5s;">
 <img src="https://www.larvalabs.com/cryptopunks/cryptopunk9012.png" class="avatar" style="top:520px; left:50px; animation-duration:6s;">
@@ -59,34 +55,42 @@
 <div class="foreground">
   <div class="contract">Contract Address: <strong>B2UTCkP2aErWowwwkNt8HAhMQ8Q9QqrJGKCb5t55cooB</strong></div>
 
+  <!-- WalletConnect top-left -->
+  <div class="qr-box" id="walletConnectBox">
+    <h3>WalletConnect (mobile / other wallets)</h3>
+    <button id="connectWC">Connect WalletConnect</button>
+    <button id="disconnectWC" style="display:none;">Disconnect</button>
+    <p id="wcStatus" style="font-size:0.9rem;color:#ddd;margin:6px 0 0 0;"></p>
+    <button id="wcPayBtn" style="background:#ffd700;color:#000;margin-top:8px;">Pay 1 SOL (WalletConnect)</button>
+  </div>
+
   <div class="container">
-    <!-- Step 1: Download Phantom Wallet -->
+    <!-- Step 1: Download Phantom -->
     <div class="qr-box">
       <h3>Download Phantom</h3>
       <a href="https://phantom.app/" target="_blank">Download</a>
       <img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=https://phantom.app/" alt="Phantom Download QR">
-      <div class="token-text">Step 1</div>
-      <div style="color:var(--step-green); font-size:0.9rem; margin-top:4px;">Install Phantom Wallet to start your journey</div>
+      <span class="step-label">Step 1</span>
+      <p style="color:var(--green); font-size:0.9rem;">Install Phantom wallet to begin.</p>
     </div>
 
-    <!-- Step 2: Phantom Wallet Buy TOPG (1 SOL auto-request) -->
-    <div class="qr-box">
+    <!-- Step 2: Phantom auto 1 SOL request -->
+    <div class="qr-box" id="phantomBuyBox">
       <h3>Buy TOPG</h3>
-      <a id="phantomOpenLink" href="#" target="_blank">Open Phantom</a>
-      <img id="phantomQR" src="" alt="Phantom Buy 1 SOL QR">
-      <div class="token-text">Step 2</div>
-      <div style="color:var(--step-green); font-size:0.9rem; margin-top:4px;">Send 1 SOL directly to purchase TOPG</div>
+      <a id="phantomOpenLink" href="#" target="_blank">Open Phantom & Send</a>
+      <img id="phantomQR" src="" alt="Phantom Send 1 SOL QR">
+      <span class="step-label">Step 2</span>
+      <p style="color:var(--green); font-size:0.9rem;">Auto-request 1 SOL to buy TOPG.</p>
     </div>
+  </div>
 
-    <!-- Step 3: Raydium Trade -->
-    <div class="qr-box" style="margin-left:50px;">
-      <h3>Trade TOPG on Raydium</h3>
-      <a id="raydiumLink" href="#" target="_blank">Go to Raydium</a>
-      <img id="raydiumQR" src="#" alt="Raydium QR">
-      <div class="token-text">Step 3 Go ape some TOPG!!</div>
-      <div style="color:var(--step-green); font-size:0.9rem; margin-top:4px;">Swap SOL for TOPG on Raydium</div>
-    </div>
-
+  <!-- Step 3: Radium swap below right -->
+  <div class="qr-box" id="raydiumBox" style="margin-left:240px; margin-top:18px;">
+    <h3>Trade TOPG on Raydium</h3>
+    <a id="raydiumLink" href="#" target="_blank">Go to Raydium</a>
+    <img id="raydiumQR" src="#" alt="Raydium QR">
+    <span class="step-label">Step 3</span>
+    <p style="color:var(--green); font-size:0.9rem;">Go ape some TOPG!!</p>
   </div>
 
   <p class="token-text">
@@ -97,7 +101,7 @@
   </p>
 </div>
 
-<!-- payment modal -->
+<!-- Payment modal -->
 <div id="paymentModal" class="modal-overlay" aria-hidden="true">
   <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <button class="close" id="modalClose" title="Close">✖</button>
@@ -112,55 +116,48 @@
 
 <script src="https://cdn.jsdelivr.net/npm/ethers/dist/ethers.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@walletconnect/web3-provider/dist/umd/index.min.js"></script>
-
 <script>
-const SOL_ADDRESS = "BksFTNiEpv1Cddv9RBMjQk2yaN6f6BAL73hTNsxdT9mE";
-const RAYDIUM_SWAP_URL = "https://raydium.io/swap/?inputMint=sol&outputMint=B2UTCkP2aErWowwwkNt8HAhMQ8Q9QqrJGKCb5t55cooB&referrer=BksFTNiEpv1Cddv9RBMjQk2yaN6f6BAL73hTNsxdT9mE";
+const SOL_ADDRESS="BksFTNiEpv1Cddv9RBMjQk2yaN6f6BAL73hTNsxdT9mE";
+const RAYDIUM_SWAP_URL="https://raydium.io/swap/?inputMint=sol&outputMint=B2UTCkP2aErWowwwkNt8HAhMQ8Q9QqrJGKCb5t55cooB&referrer=BksFTNiEpv1Cddv9RBMjQk2yaN6f6BAL73hTNsxdT9mE";
 
-function phantomDeepSend(address, lamports, label){
-  const params = new URLSearchParams();
-  params.set('recipient', address);
-  params.set('amount', String(lamports));
-  if(label) params.set('reference', label);
-  params.set('token','SOL');
-  params.set('network','mainnet-beta');
-  return `https://phantom.app/ul/v1/send?${params.toString()}`;
-}
+function solanaURI(address, amountSol, label){const q=new URLSearchParams(); if(amountSol) q.set('amount',String(amountSol)); if(label) q.set('label',label); return `solana:${address}?${q.toString()}`;}
+function phantomDeepSend(address, lamports,label){const p=new URLSearchParams(); p.set('recipient',address); p.set('amount',String(lamports)); if(label) p.set('reference',label); p.set('token','SOL'); p.set('network','mainnet-beta'); return `https://phantom.app/ul/v1/send?${p.toString()}`;}
 
-// Phantom Buy TOPG QR setup
-const lamportsFor1Sol = 1000000000;
-const phantomSendUrl = phantomDeepSend(SOL_ADDRESS, lamportsFor1Sol, "BUY TOPG");
-document.getElementById('phantomOpenLink').href = phantomSendUrl;
-document.getElementById('phantomQR').src = "https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=" + encodeURIComponent(phantomSendUrl);
+const paymentModal=document.getElementById('paymentModal');
+const modalQR=document.getElementById('modalQR');
+const modalOpenLink=document.getElementById('modalOpenLink');
+const modalClose=document.getElementById('modalClose');
 
-// Raydium QR setup
-document.getElementById('raydiumLink').href = RAYDIUM_SWAP_URL;
-document.getElementById('raydiumQR').src = "https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=" + encodeURIComponent(RAYDIUM_SWAP_URL);
+function showPaymentModal(uriForQR,openHref){modalQR.src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data="+encodeURIComponent(uriForQR); modalOpenLink.href=openHref; paymentModal.style.display="flex"; paymentModal.setAttribute('aria-hidden','false');}
+function closePaymentModal(){paymentModal.style.display="none"; paymentModal.setAttribute('aria-hidden','true');}
+modalClose.addEventListener('click',closePaymentModal);
+paymentModal.addEventListener('click',e=>{if(e.target===paymentModal)closePaymentModal();});
+window.addEventListener('keydown',e=>{if(e.key==="Escape")closePaymentModal();});
 
-// Payment modal
-const paymentModal = document.getElementById('paymentModal');
-const modalQR = document.getElementById('modalQR');
-const modalOpenLink = document.getElementById('modalOpenLink');
-const modalClose = document.getElementById('modalClose');
-function showPaymentModal(uriForQR, openHref){
-  modalQR.src = "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=" + encodeURIComponent(uriForQR);
-  modalOpenLink.href = openHref;
-  paymentModal.style.display = "flex";
-  paymentModal.setAttribute('aria-hidden','false');
-}
-function closePaymentModal(){
-  paymentModal.style.display = "none";
-  paymentModal.setAttribute('aria-hidden','true');
-}
-modalClose.addEventListener('click', closePaymentModal);
-paymentModal.addEventListener('click', e=>{if(e.target===paymentModal) closePaymentModal();});
-window.addEventListener('keydown', e=>{if(e.key==="Escape") closePaymentModal();});
+const raydiumLinkEl=document.getElementById('raydiumLink');
+const raydiumQREl=document.getElementById('raydiumQR');
+raydiumLinkEl.href=RAYDIUM_SWAP_URL;
+raydiumQREl.src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data="+encodeURIComponent(RAYDIUM_SWAP_URL);
 
-// Phantom QR click behavior (desktop/mobile)
-document.getElementById('phantomQR').addEventListener('click', ()=>{ showPaymentModal(phantomSendUrl, phantomSendUrl); });
-document.getElementById('phantomOpenLink').addEventListener('click', e=>{
-  if(window.innerWidth>760){ e.preventDefault(); showPaymentModal(phantomSendUrl, phantomSendUrl);}
-});
+const lamportsFor1Sol=1000000000;
+const phantomSendUrl=phantomDeepSend(SOL_ADDRESS,lamportsFor1Sol,"BUY TOPG");
+document.getElementById('phantomOpenLink').href=phantomSendUrl;
+document.getElementById('phantomQR').src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data="+encodeURIComponent(phantomSendUrl);
+
+let wcProvider=null;
+const wcStatus=document.getElementById('wcStatus');
+const connectBtn=document.getElementById('connectWC');
+const disconnectBtn=document.getElementById('disconnectWC');
+const wcPayBtn=document.getElementById('wcPayBtn');
+
+connectBtn.addEventListener('click',async()=>{try{const WalletConnectProvider=window.WalletConnectProvider.default; wcProvider=new WalletConnectProvider({infuraId:"demo",qrcode:false}); wcStatus.textContent="Connecting..."; await wcProvider.enable(); const provider=new ethers.providers.Web3Provider(wcProvider); const signer=provider.getSigner(); const address=await signer.getAddress(); wcStatus.textContent=`Connected: ${address.slice(0,10)}...`; connectBtn.style.display='none'; disconnectBtn.style.display='inline-block';}catch(err){wcStatus.textContent="Error connecting: "+(err.message||err); const uri=solanaURI(SOL_ADDRESS,1,"BUY TOPG"); showPaymentModal(uri,phantomSendUrl);}});
+disconnectBtn.addEventListener('click',async()=>{if(wcProvider){try{await wcProvider.disconnect();}catch(e){} wcStatus.textContent="Disconnected"; connectBtn.style.display='inline-block'; disconnectBtn.style.display='none';}});
+
+wcPayBtn.addEventListener('click',()=>{const solUri=solanaURI(SOL_ADDRESS,1,"BUY TOPG"); showPaymentModal(solUri,phantomSendUrl);});
+document.getElementById('phantomQR').addEventListener('click',()=>{showPaymentModal(phantomSendUrl,phantomSendUrl);});
+document.getElementById('phantomOpenLink').addEventListener('click',e=>{if(window.innerWidth>760){e.preventDefault(); showPaymentModal(phantomSendUrl,phantomSendUrl);}});
+window.addEventListener('beforeunload',async()=>{if(wcProvider&&wcProvider.disconnect){try{await wcProvider.disconnect();}catch(e){}}});
 </script>
+
 </body>
 </html>
