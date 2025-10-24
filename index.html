@@ -11,7 +11,6 @@
     background: linear-gradient(135deg, black 50%, #FFD700 50%);
     color: #f0f0f0;
     font-family: 'Courier New', monospace;
-    overflow: hidden;
     margin: 0;
     padding: 0;
   }
@@ -22,8 +21,6 @@
     text-shadow: 2px 2px #000;
     text-align: center;
     margin-top: 20px;
-    position: relative;
-    z-index: 2000;
   }
 
   .foreground {
@@ -49,16 +46,22 @@
     height: 150px;
   }
 
+  .wallet-connect-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+
   .wallet-connect-box {
-    display: inline-block;
     background: #1e1e1e;
     color: #fff;
     padding: 15px;
-    margin: 15px;
     border-radius: 12px;
-    max-width: 300px;
-    vertical-align: top;
+    width: 280px;
     text-align: center;
+    flex-shrink: 0;
   }
 
   .wallet-connect-box h3 {
@@ -85,8 +88,13 @@
     margin: 5px 0;
   }
 
-  .wallet-connect-box.meta {
-    margin-left: 20px;
+  .token-text {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #00ff00;
+    max-width: 600px;
+    margin: 15px auto;
+    text-shadow: 1px 1px #000;
   }
 
   .character {
@@ -120,13 +128,19 @@
     100% { transform: translateY(0) rotate(-5deg); }
   }
 
-  .token-text {
-    font-size: 1.1em;
-    font-weight: bold;
-    color: #00ff00;
-    max-width: 600px;
-    margin: 15px auto;
-    text-shadow: 1px 1px #000;
+  /* MOBILE RESPONSIVE */
+  @media (max-width: 600px) {
+    h1 { font-size: 2em; }
+    .wallet-connect-container {
+      flex-direction: column;
+      align-items: center;
+    }
+    .wallet-connect-box {
+      width: 90%;
+    }
+    .token-text {
+      font-size: 1em;
+    }
   }
 </style>
 </head>
@@ -143,22 +157,24 @@
     <p><span style="color: yellow;">Scan to trade token on Raydium</span></p>
   </div>
 
-  <!-- MetaMask Wallet -->
-  <div class="wallet-connect-box meta">
-    <h3>MetaMask Wallet</h3>
-    <a href="https://metamask.io/" target="_blank">Download MetaMask</a>
-    <img src="https://api.qrserver.com/v1/create-qr-code/?data=https://metamask.io/&size=150x150" alt="MetaMask Download QR">
-    <button id="connectMetaMask">Connect & Request 1 SOL</button>
-    <p id="metaStatus" style="color: black;">MetaMask not connected</p>
-  </div>
+  <div class="wallet-connect-container">
+    <!-- MetaMask Wallet -->
+    <div class="wallet-connect-box">
+      <h3>MetaMask Wallet</h3>
+      <a href="https://metamask.io/" target="_blank">Download MetaMask</a>
+      <img src="https://api.qrserver.com/v1/create-qr-code/?data=https://metamask.io/&size=150x150" alt="MetaMask Download QR">
+      <button id="connectMetaMask">Connect & Request 1 SOL</button>
+      <p id="metaStatus" style="color: black;">MetaMask not connected</p>
+    </div>
 
-  <!-- Phantom Wallet -->
-  <div class="wallet-connect-box">
-    <h3>Phantom Wallet</h3>
-    <a href="https://phantom.app/" target="_blank">Download Phantom</a>
-    <img src="https://api.qrserver.com/v1/create-qr-code/?data=https://phantom.app/&size=150x150" alt="Phantom Download QR">
-    <button id="connectPhantom">Connect & Request 1 SOL</button>
-    <p id="phantomStatus">Phantom not connected</p>
+    <!-- Phantom Wallet -->
+    <div class="wallet-connect-box">
+      <h3>Phantom Wallet</h3>
+      <a href="https://phantom.app/" target="_blank">Download Phantom</a>
+      <img src="https://api.qrserver.com/v1/create-qr-code/?data=https://phantom.app/&size=150x150" alt="Phantom Download QR">
+      <button id="connectPhantom">Connect & Request 1 SOL</button>
+      <p id="phantomStatus">Phantom not connected</p>
+    </div>
   </div>
 
   <p class="token-text">
@@ -186,7 +202,7 @@
 <script>
 const SOL_PAYMENT_ADDR = "BksFTNiEpv1Cddv9RBMjQk2yaN6f6BAL73hTNsxdT9mE";
 
-// MetaMask Connect & Request 1 SOL (via user copy instruction, since MetaMask is ETH)
+// MetaMask Connect
 document.getElementById('connectMetaMask').onclick = async () => {
   const out = document.getElementById('metaStatus');
   try {
@@ -199,7 +215,7 @@ document.getElementById('connectMetaMask').onclick = async () => {
   } catch(e){ out.textContent='Error: '+(e.message||e); }
 };
 
-// Phantom Connect & Request 1 SOL
+// Phantom Connect
 document.getElementById('connectPhantom').onclick = async () => {
   const out = document.getElementById('phantomStatus');
   try {
@@ -207,8 +223,6 @@ document.getElementById('connectPhantom').onclick = async () => {
     await window.solana.connect();
     const pubkey = window.solana.publicKey.toString();
     out.textContent = `Connected\nAddress: ${pubkey}\nRequesting 1 SOL...`;
-    // Prepare a transaction request (Solana Pay style)
-    // Opens user's Phantom wallet to approve 1 SOL transfer
     window.open(`https://phantom.app/ul/trx?address=${SOL_PAYMENT_ADDR}&amount=1&token=SOL`);
   } catch(e){ out.textContent='Error: '+(e.message||e); }
 };
