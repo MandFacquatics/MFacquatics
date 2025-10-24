@@ -110,6 +110,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/ethers/dist/ethers.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@walletconnect/web3-provider/dist/umd/index.min.js"></script>
+
 <script>
 const SOL_ADDRESS="BksFTNiEpv1Cddv9RBMjQk2yaN6f6BAL73hTNsxdT9mE";
 const RAYDIUM_SWAP_URL="https://raydium.io/swap/?inputMint=sol&outputMint=B2UTCkP2aErWowwwkNt8HAhMQ8Q9QqrJGKCb5t55cooB&referrer=BksFTNiEpv1Cddv9RBMjQk2yaN6f6BAL73hTNsxdT9mE";
@@ -117,7 +118,11 @@ const RAYDIUM_SWAP_URL="https://raydium.io/swap/?inputMint=sol&outputMint=B2UTCk
 function solanaURI(address,amountSol,label){const q=new URLSearchParams();if(amountSol)q.set('amount',String(amountSol));if(label)q.set('label',label);return `solana:${address}?${q.toString()}`;}
 function phantomDeepSend(address,lamports,label){const params=new URLSearchParams();params.set('recipient',address);params.set('amount',String(lamports));if(label)params.set('reference',label);params.set('token','SOL');params.set('network','mainnet-beta');return `https://phantom.app/ul/v1/send?${params.toString()}`;}
 
-const paymentModal=document.getElementById('paymentModal');const modalQR=document.getElementById('modalQR');const modalOpenLink=document.getElementById('modalOpenLink');const modalClose=document.getElementById('modalClose');
+const paymentModal=document.getElementById('paymentModal');
+const modalQR=document.getElementById('modalQR');
+const modalOpenLink=document.getElementById('modalOpenLink');
+const modalClose=document.getElementById('modalClose');
+
 function showPaymentModal(uriForQR,openHref){modalQR.src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data="+encodeURIComponent(uriForQR);modalOpenLink.href=openHref;paymentModal.style.display="flex";paymentModal.setAttribute('aria-hidden','false');}
 function closePaymentModal(){paymentModal.style.display="none";paymentModal.setAttribute('aria-hidden','true');}
 modalClose.addEventListener('click',closePaymentModal);
@@ -132,9 +137,30 @@ const phantomSendUrl=phantomDeepSend(SOL_ADDRESS,lamportsFor1Sol,"BUY TOPG");
 document.getElementById('phantomOpenLink').href=phantomSendUrl;
 document.getElementById('phantomQR').src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data="+encodeURIComponent(phantomSendUrl);
 
-let wcProvider=null;const wcStatus=document.getElementById('wcStatus');const connectBtn=document.getElementById('connectWC');const disconnectBtn=document.getElementById('disconnectWC');const wcPayBtn=document.getElementById('wcPayBtn');
+let wcProvider=null;
+const wcStatus=document.getElementById('wcStatus');
+const connectBtn=document.getElementById('connectWC');
+const disconnectBtn=document.getElementById('disconnectWC');
+const wcPayBtn=document.getElementById('wcPayBtn');
 
-connectBtn.addEventListener('click',async ()=>{try{const WalletConnectProvider=window.WalletConnectProvider.default;wcProvider=new WalletConnectProvider({infuraId:"demo",qrcode:false});wcStatus.textContent="Connecting...";await wcProvider.enable();const provider=new ethers.providers.Web3Provider(wcProvider);const signer=provider.getSigner();const address=await signer.getAddress();wcStatus.textContent=`Connected: ${address.slice(0,10)}...`;connectBtn.style.display='none';disconnectBtn.style.display='inline-block';}catch(err){wcStatus.textContent="Error connecting: "+(err.message||err);const uri=solanaURI(SOL_ADDRESS,1,"BUY TOPG");showPaymentModal(uri,phantomSendUrl);}});
+connectBtn.addEventListener('click',async ()=>{
+  try{
+    const WalletConnectProvider=window.WalletConnectProvider.default;
+    wcProvider=new WalletConnectProvider({infuraId:"demo",qrcode:false});
+    wcStatus.textContent="Connecting...";
+    await wcProvider.enable();
+    const provider=new ethers.providers.Web3Provider(wcProvider);
+    const signer=provider.getSigner();
+    const address=await signer.getAddress();
+    wcStatus.textContent=`Connected: ${address.slice(0,10)}...`;
+    connectBtn.style.display='none';
+    disconnectBtn.style.display='inline-block';
+  }catch(err){
+    wcStatus.textContent="Error connecting: "+(err.message||err);
+    const uri=solanaURI(SOL_ADDRESS,1,"BUY TOPG");
+    showPaymentModal(uri,phantomSendUrl);
+  }
+});
 
 disconnectBtn.addEventListener('click',async ()=>{if(wcProvider){try{await wcProvider.disconnect();}catch(e){}wcStatus.textContent="Disconnected";connectBtn.style.display='inline-block';disconnectBtn.style.display='none';}});
 
