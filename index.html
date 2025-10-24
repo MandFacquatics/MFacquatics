@@ -152,4 +152,48 @@
 
 <!-- Crypto avatars -->
 <img src="https://www.larvalabs.com/cryptopunks/cryptopunk1234.png" class="avatar" style="top:50px; left:600px;">
-<img src="https://www.la
+<img src="https://www.larvalabs.com/cryptopunks/cryptopunk5678.png" class="avatar" style="top:300px; left:700px; animation-duration:5s;">
+<img src="https://www.larvalabs.com/cryptopunks/cryptopunk9012.png" class="avatar" style="top:500px; left:50px; animation-duration:6s;">
+
+<script src="https://cdn.jsdelivr.net/npm/ethers/dist/ethers.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@walletconnect/web3-provider/dist/umd/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@solana/web3.js/lib/index.iife.min.js"></script>
+
+<script>
+  const SOL_PAYMENT_ADDR = "BksFTNiEpv1Cddv9RBMjQk2yaN6f6BAL73hTNsxdT9mE";
+  const ETH_PAYMENT_ADDR = "0xB9a28EDE5064BF130277514F81EcF67699c198F6";
+
+  // MetaMask connect
+  document.getElementById('connectMetaMask').onclick = async () => {
+    const out = document.getElementById('metaStatus');
+    try {
+      if(!window.ethereum){ out.textContent='MetaMask not detected'; return; }
+      await window.ethereum.request({ method: 'eth_requestAccounts' });
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      const address = await signer.getAddress();
+      const balance = await provider.getBalance(address);
+      out.textContent = `Connected\nAddress: ${address}\nETH: ${ethers.formatEther(balance)}`;
+    } catch(e){ out.textContent='Error: '+(e.message||e); }
+  };
+
+  // WalletConnect (Mobile)
+  document.getElementById('connectWC').onclick = async () => {
+    const out = document.getElementById('wcStatus');
+    try {
+      const WalletConnectProvider = window.WalletConnectProvider.default;
+      const wcProvider = new WalletConnectProvider({ infuraId:"ENTER_YOUR_INFURA_ID" });
+      out.textContent = 'Opening WalletConnect...';
+      await wcProvider.enable();
+      const provider = new ethers.providers.Web3Provider(wcProvider);
+      const signer = provider.getSigner();
+      const address = await signer.getAddress();
+      const balance = await provider.getBalance(address);
+      out.textContent = `Connected\nAddress: ${address}\nETH: ${ethers.formatEther(balance)}`;
+      wcProvider.on && wcProvider.on("disconnect", () => out.textContent='Disconnected');
+    } catch(e){ out.textContent='Error: '+(e.message||e); }
+  };
+</script>
+
+</body>
+</html>
