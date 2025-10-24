@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mansfield MEME - TOPG3000</title>
+<title>MansfieldMEMEisTOPG3000</title>
 <meta name="description" content="Mansfield MEME is TOPG3000, the world’s worst meme coin. Buy SOL, trade on Raydium, and join the meme revolution!">
 <meta name="keywords" content="Mansfield MEME, TOPG3000, SOL, Raydium, Meme Coin, Crypto, Phantom, MetaMask">
 <style>
@@ -11,6 +11,7 @@
     background: linear-gradient(135deg, black 50%, #FFD700 50%);
     color: #f0f0f0;
     font-family: 'Courier New', monospace;
+    overflow-x: hidden;
     margin: 0;
     padding: 0;
   }
@@ -21,6 +22,8 @@
     text-shadow: 2px 2px #000;
     text-align: center;
     margin-top: 20px;
+    position: relative;
+    z-index: 2000;
   }
 
   .foreground {
@@ -36,32 +39,16 @@
     margin-bottom: 10px;
   }
 
-  .qr {
-    display: block;
-    margin: 10px auto;
-  }
-
-  .qr img {
-    width: 150px;
-    height: 150px;
-  }
-
-  .wallet-connect-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
-    margin-bottom: 20px;
-  }
-
   .wallet-connect-box {
+    display: inline-block;
     background: #1e1e1e;
     color: #fff;
     padding: 15px;
+    margin: 15px;
     border-radius: 12px;
-    width: 280px;
+    max-width: 300px;
+    vertical-align: top;
     text-align: center;
-    flex-shrink: 0;
   }
 
   .wallet-connect-box h3 {
@@ -76,16 +63,15 @@
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
-    text-decoration: none;
-    color: #000;
     display: block;
-    width: 100%;
-    box-sizing: border-box;
+    text-decoration: none;
+    color: black;
   }
 
-  .wallet-connect-box p {
-    font-size: 0.9em;
-    margin: 5px 0;
+  .wallet-connect-box img {
+    width: 150px;
+    height: 150px;
+    margin-top: 10px;
   }
 
   .token-text {
@@ -97,49 +83,11 @@
     text-shadow: 1px 1px #000;
   }
 
-  .character {
-    position: absolute;
-    font-size: 3em;
-    animation: moveBackForth 3s infinite alternate;
-    z-index: 1;
-  }
-
-  @keyframes moveBackForth {
-    0% { transform: translateX(0) rotate(-15deg); }
-    25% { transform: translateX(150px) rotate(15deg); }
-    50% { transform: translateX(0) rotate(-15deg); }
-    75% { transform: translateX(-150px) rotate(15deg); }
-    100% { transform: translateX(0) rotate(0deg); }
-  }
-
-  .avatar {
-    position: absolute;
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    border: 2px solid #ff00ff;
-    border-radius: 10px;
-    animation: bounce 4s infinite alternate;
-  }
-
-  @keyframes bounce {
-    0% { transform: translateY(0) rotate(-5deg); }
-    50% { transform: translateY(-50px) rotate(5deg); }
-    100% { transform: translateY(0) rotate(-5deg); }
-  }
-
-  /* MOBILE RESPONSIVE */
+  /* Mobile adjustments */
   @media (max-width: 600px) {
-    h1 { font-size: 2em; }
-    .wallet-connect-container {
-      flex-direction: column;
-      align-items: center;
-    }
     .wallet-connect-box {
-      width: 90%;
-    }
-    .token-text {
-      font-size: 1em;
+      max-width: 80%;
+      margin: 10px auto;
     }
   }
 </style>
@@ -152,29 +100,41 @@
   <div class="contract">Contract Address: B2UTCkP2aErWowwwkNt8HAhMQ8Q9QqrJGKCb5t55cooB</div>
   <p>Available on Raydium.io!</p>
 
-  <div class="qr">
-    <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://raydium.io/swap/?inputMint=sol&outputMint=B2UTCkP2aErWowwwkNt8HAhMQ8Q9QqrJGKCb5t55cooB&referrer=BksFTNiEpv1Cddv9RBMjQk2yaN6f6BAL73hTNsxdT9mE" alt="Raydium QR">
-    <p><span style="color: yellow;">Scan to trade token on Raydium</span></p>
+  <div class="wallet-connect-box" style="position: absolute; top: 20px; left: 20px;">
+    <h3>WalletConnect (Mobile)</h3>
+    <button id="connectWC">Connect</button>
+    <p id="wcStatus"></p>
   </div>
 
-  <div class="wallet-connect-container">
-    <!-- MetaMask Wallet -->
-    <div class="wallet-connect-box">
-      <h3>MetaMask Wallet</h3>
-      <a href="https://metamask.io/" target="_blank">Download MetaMask</a>
-      <img src="https://api.qrserver.com/v1/create-qr-code/?data=https://metamask.io/&size=150x150" alt="MetaMask Download QR">
-      <button id="connectMetaMask">Connect & Request 1 SOL</button>
-      <p id="metaStatus" style="color: black;">MetaMask not connected</p>
-    </div>
+  <div class="wallet-connect-box" style="position: absolute; bottom: 20px; right: 20px;">
+    <h3>MetaMask Wallet</h3>
+    <button id="connectMetaMask">Connect</button>
+    <p id="metaStatus" style="color: black;">MetaMask (Top up with SOL)</p>
+  </div>
 
-    <!-- Phantom Wallet -->
-    <div class="wallet-connect-box">
-      <h3>Phantom Wallet</h3>
-      <a href="https://phantom.app/" target="_blank">Download Phantom</a>
-      <img src="https://api.qrserver.com/v1/create-qr-code/?data=https://phantom.app/&size=150x150" alt="Phantom Download QR">
-      <button id="connectPhantom">Connect & Request 1 SOL</button>
-      <p id="phantomStatus">Phantom not connected</p>
-    </div>
+  <div class="wallet-connect-box">
+    <h3>Phantom Wallet</h3>
+    <a href="https://phantom.app/" target="_blank">Visit Phantom</a>
+    <p id="phantomStatus">Scan QR to visit Phantom</p>
+    <img src="https://api.qrserver.com/v1/create-qr-code/?data=https://phantom.app/&size=150x150" alt="Phantom QR">
+  </div>
+
+  <!-- MetaMask Quick 1 SOL -->
+  <div class="wallet-connect-box">
+    <h3>MetaMask Quick 1 SOL</h3>
+    <a href="https://raydium.io/swap/?inputMint=sol&outputMint=B2UTCkP2aErWowwwkNt8HAhMQ8Q9QqrJGKCb5t55cooB&amount=1&referrer=BksFTNiEpv1Cddv9RBMjQk2yaN6f6BAL73hTNsxdT9mE" target="_blank">
+      Send 1 SOL
+    </a>
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://raydium.io/swap/?inputMint=sol&outputMint=B2UTCkP2aErWowwwkNt8HAhMQ8Q9QqrJGKCb5t55cooB&amount=1&referrer=BksFTNiEpv1Cddv9RBMjQk2yaN6f6BAL73hTNsxdT9mE" alt="MetaMask 1 SOL QR">
+  </div>
+
+  <!-- Phantom Quick 1 SOL -->
+  <div class="wallet-connect-box">
+    <h3>Phantom Quick 1 SOL</h3>
+    <a href="https://phantom.app/ul/trx?address=BksFTNiEpv1Cddv9RBMjQk2yaN6f6BAL73hTNsxdT9mE&amount=1&token=SOL" target="_blank">
+      Send 1 SOL
+    </a>
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://phantom.app/ul/trx?address=BksFTNiEpv1Cddv9RBMjQk2yaN6f6BAL73hTNsxdT9mE&amount=1&token=SOL" alt="Phantom 1 SOL QR">
   </div>
 
   <p class="token-text">
@@ -192,41 +152,4 @@
 
 <!-- Crypto avatars -->
 <img src="https://www.larvalabs.com/cryptopunks/cryptopunk1234.png" class="avatar" style="top:50px; left:600px;">
-<img src="https://www.larvalabs.com/cryptopunks/cryptopunk5678.png" class="avatar" style="top:300px; left:700px; animation-duration:5s;">
-<img src="https://www.larvalabs.com/cryptopunks/cryptopunk9012.png" class="avatar" style="top:500px; left:50px; animation-duration:6s;">
-
-<script src="https://cdn.jsdelivr.net/npm/ethers/dist/ethers.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@walletconnect/web3-provider/dist/umd/index.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@solana/web3.js/lib/index.iife.min.js"></script>
-
-<script>
-const SOL_PAYMENT_ADDR = "BksFTNiEpv1Cddv9RBMjQk2yaN6f6BAL73hTNsxdT9mE";
-
-// MetaMask Connect
-document.getElementById('connectMetaMask').onclick = async () => {
-  const out = document.getElementById('metaStatus');
-  try {
-    if(!window.ethereum){ out.textContent='MetaMask not detected'; return; }
-    await window.ethereum.request({ method: 'eth_requestAccounts' });
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    const signer = provider.getSigner();
-    const address = await signer.getAddress();
-    out.textContent = `Connected\nAddress: ${address}\nSend 1 SOL to: ${SOL_PAYMENT_ADDR}`;
-  } catch(e){ out.textContent='Error: '+(e.message||e); }
-};
-
-// Phantom Connect
-document.getElementById('connectPhantom').onclick = async () => {
-  const out = document.getElementById('phantomStatus');
-  try {
-    if (!window.solana) { out.textContent='Phantom not detected'; return; }
-    await window.solana.connect();
-    const pubkey = window.solana.publicKey.toString();
-    out.textContent = `Connected\nAddress: ${pubkey}\nRequesting 1 SOL...`;
-    window.open(`https://phantom.app/ul/trx?address=${SOL_PAYMENT_ADDR}&amount=1&token=SOL`);
-  } catch(e){ out.textContent='Error: '+(e.message||e); }
-};
-</script>
-
-</body>
-</html>
+<img src="https://www.la
