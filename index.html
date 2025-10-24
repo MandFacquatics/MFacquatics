@@ -3,87 +3,130 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MansfieldMEMEisTOPG3000</title>
+<title>Mansfield MEME - TOPG3000</title>
+<meta name="description" content="Mansfield MEME is TOPG3000, the world’s worst meme coin. Buy SOL, trade on Raydium, and join the meme revolution!">
+<meta name="keywords" content="Mansfield MEME, TOPG3000, SOL, Raydium, Meme Coin, Crypto, Phantom, MetaMask">
 <style>
   body {
-    font-family: Arial, sans-serif;
-    background: #121212;
-    color: #fff;
-    padding: 20px;
+    background: linear-gradient(135deg, black 50%, #FFD700 50%);
+    color: #f0f0f0;
+    font-family: 'Courier New', monospace;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
   }
 
   h1 {
-    color: #ffcc00;
+    color: #ff00ff;
+    font-size: 3em;
+    text-shadow: 2px 2px #000;
     text-align: center;
+    margin-top: 20px;
+    position: relative;
+    z-index: 2000;
   }
 
-  .container {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    gap: 20px;
+  .foreground {
+    position: relative;
+    z-index: 1000;
+    text-align: center;
+    margin: 20px;
   }
 
-  .text-box {
-    flex: 2 1 300px;
-    color: #00ff00;
+  .contract {
     font-weight: bold;
-    max-width: 600px;
+    font-size: 1.3em;
+    margin-bottom: 10px;
   }
 
-  .wallet-box {
-    background: #1e1e1e;
-    padding: 20px;
-    border-radius: 12px;
-    flex: 1 1 250px;
-    min-width: 200px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .wallet-box a {
+  .qr {
     display: block;
-    margin: 5px 0;
-    padding: 10px;
-    background: #ffcc00;
-    color: #000;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 5px;
+    margin: 10px auto;
+  }
+
+  .qr img {
+    width: 150px;
+    height: 150px;
+  }
+
+  .wallet-connect-box {
+    display: inline-block;
+    background: #1e1e1e;
+    color: #fff;
+    padding: 15px;
+    margin: 15px;
+    border-radius: 12px;
+    max-width: 300px;
+    vertical-align: top;
     text-align: center;
-    width: 100%;
   }
 
-  .wallet-box img {
-    width: 120px;
-    height: 120px;
+  .wallet-connect-box h3 {
+    margin: 0 0 10px 0;
+  }
+
+  .wallet-connect-box button, .wallet-connect-box a {
+    margin-top: 10px;
+    padding: 8px 15px;
+    background: #ffcc00;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: none;
+    color: #000;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .wallet-connect-box p {
+    font-size: 0.9em;
     margin: 5px 0;
   }
 
-  /* Mobile: stack text and wallet box side by side */
-  @media (max-width: 600px) {
-    .container {
-      flex-direction: row;
-      flex-wrap: nowrap;
-    }
-    .text-box {
-      flex: 2;
-    }
-    .wallet-box {
-      flex: 1;
-    }
+  .wallet-connect-box.meta {
+    margin-left: 20px;
   }
 
-  /* Very small screens: stack vertically to prevent overlap */
-  @media (max-width: 400px) {
-    .container {
-      flex-direction: column;
-    }
-    .wallet-box {
-      width: 100%;
-      align-items: center;
-    }
+  .character {
+    position: absolute;
+    font-size: 3em;
+    animation: moveBackForth 3s infinite alternate;
+    z-index: 1;
+  }
+
+  @keyframes moveBackForth {
+    0% { transform: translateX(0) rotate(-15deg); }
+    25% { transform: translateX(150px) rotate(15deg); }
+    50% { transform: translateX(0) rotate(-15deg); }
+    75% { transform: translateX(-150px) rotate(15deg); }
+    100% { transform: translateX(0) rotate(0deg); }
+  }
+
+  .avatar {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border: 2px solid #ff00ff;
+    border-radius: 10px;
+    animation: bounce 4s infinite alternate;
+  }
+
+  @keyframes bounce {
+    0% { transform: translateY(0) rotate(-5deg); }
+    50% { transform: translateY(-50px) rotate(5deg); }
+    100% { transform: translateY(0) rotate(-5deg); }
+  }
+
+  .token-text {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #00ff00;
+    max-width: 600px;
+    margin: 15px auto;
+    text-shadow: 1px 1px #000;
   }
 </style>
 </head>
@@ -91,26 +134,85 @@
 
 <h1>MansfieldMEMEisTOPG3000</h1>
 
-<div class="container">
-  <div class="text-box">
-    <p>
-      Why did the poorest town of Old Manfield start mining memes? Because they said laughter pays better than gold. 
-      Think poor stay poor. Introducing MansfieldMEMEisTOPG—the world’s worst meme coin. 
-      Powered by forgotten GIFs, cursed Vines, and pure optimism. Price only goes up… in spirit, if not in your wallet. 
-      Old Memetics: where broke meets blockchain hilarity.
-    </p>
+<div class="foreground">
+  <div class="contract">Contract Address: B2UTCkP2aErWowwwkNt8HAhMQ8Q9QqrJGKCb5t55cooB</div>
+  <p>Available on Raydium.io!</p>
+
+  <div class="qr">
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://raydium.io/swap/?inputMint=sol&outputMint=B2UTCkP2aErWowwwkNt8HAhMQ8Q9QqrJGKCb5t55cooB&referrer=BksFTNiEpv1Cddv9RBMjQk2yaN6f6BAL73hTNsxdT9mE" alt="Raydium QR">
+    <p><span style="color: yellow;">Scan to trade token on Raydium</span></p>
   </div>
 
-  <div class="wallet-box">
-    <p>MetaMask Wallet</p>
-    <a href="https://metamask.io/" target="_blank">Go to MetaMask</a>
-    <img src="https://api.qrserver.com/v1/create-qr-code/?data=https://metamask.io/&size=150x150" alt="MetaMask QR">
-
-    <p>Phantom Wallet</p>
-    <a href="https://phantom.app/" target="_blank">Go to Phantom</a>
-    <img src="https://api.qrserver.com/v1/create-qr-code/?data=https://phantom.app/&size=150x150" alt="Phantom QR">
+  <!-- MetaMask Wallet -->
+  <div class="wallet-connect-box meta">
+    <h3>MetaMask Wallet</h3>
+    <a href="https://metamask.io/" target="_blank">Download MetaMask</a>
+    <img src="https://api.qrserver.com/v1/create-qr-code/?data=https://metamask.io/&size=150x150" alt="MetaMask Download QR">
+    <button id="connectMetaMask">Connect & Request 1 SOL</button>
+    <p id="metaStatus" style="color: black;">MetaMask not connected</p>
   </div>
+
+  <!-- Phantom Wallet -->
+  <div class="wallet-connect-box">
+    <h3>Phantom Wallet</h3>
+    <a href="https://phantom.app/" target="_blank">Download Phantom</a>
+    <img src="https://api.qrserver.com/v1/create-qr-code/?data=https://phantom.app/&size=150x150" alt="Phantom Download QR">
+    <button id="connectPhantom">Connect & Request 1 SOL</button>
+    <p id="phantomStatus">Phantom not connected</p>
+  </div>
+
+  <p class="token-text">
+    Why did the poorest town of Old Manfield start mining memes? Because they said laughter pays better than gold. 
+    Think poor stay poor. Introducing MansfieldMEMEisTOPG—the world’s worst meme coin. 
+    Powered by forgotten GIFs, cursed Vines, and pure optimism. Price only goes up… in spirit, if not in your wallet. 
+    Old Memetics: where broke meets blockchain hilarity.
+  </p>
 </div>
+
+<!-- 80s style fighter characters -->
+<div class="character" style="top:100px; left:50px;">🥋</div>
+<div class="character" style="top:250px; left:200px; animation-duration:4s;">👊</div>
+<div class="character" style="top:400px; left:400px; animation-duration:5s;">💥</div>
+
+<!-- Crypto avatars -->
+<img src="https://www.larvalabs.com/cryptopunks/cryptopunk1234.png" class="avatar" style="top:50px; left:600px;">
+<img src="https://www.larvalabs.com/cryptopunks/cryptopunk5678.png" class="avatar" style="top:300px; left:700px; animation-duration:5s;">
+<img src="https://www.larvalabs.com/cryptopunks/cryptopunk9012.png" class="avatar" style="top:500px; left:50px; animation-duration:6s;">
+
+<script src="https://cdn.jsdelivr.net/npm/ethers/dist/ethers.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@walletconnect/web3-provider/dist/umd/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@solana/web3.js/lib/index.iife.min.js"></script>
+
+<script>
+const SOL_PAYMENT_ADDR = "BksFTNiEpv1Cddv9RBMjQk2yaN6f6BAL73hTNsxdT9mE";
+
+// MetaMask Connect & Request 1 SOL (via user copy instruction, since MetaMask is ETH)
+document.getElementById('connectMetaMask').onclick = async () => {
+  const out = document.getElementById('metaStatus');
+  try {
+    if(!window.ethereum){ out.textContent='MetaMask not detected'; return; }
+    await window.ethereum.request({ method: 'eth_requestAccounts' });
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+    const address = await signer.getAddress();
+    out.textContent = `Connected\nAddress: ${address}\nSend 1 SOL to: ${SOL_PAYMENT_ADDR}`;
+  } catch(e){ out.textContent='Error: '+(e.message||e); }
+};
+
+// Phantom Connect & Request 1 SOL
+document.getElementById('connectPhantom').onclick = async () => {
+  const out = document.getElementById('phantomStatus');
+  try {
+    if (!window.solana) { out.textContent='Phantom not detected'; return; }
+    await window.solana.connect();
+    const pubkey = window.solana.publicKey.toString();
+    out.textContent = `Connected\nAddress: ${pubkey}\nRequesting 1 SOL...`;
+    // Prepare a transaction request (Solana Pay style)
+    // Opens user's Phantom wallet to approve 1 SOL transfer
+    window.open(`https://phantom.app/ul/trx?address=${SOL_PAYMENT_ADDR}&amount=1&token=SOL`);
+  } catch(e){ out.textContent='Error: '+(e.message||e); }
+};
+</script>
 
 </body>
 </html>
