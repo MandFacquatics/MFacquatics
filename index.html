@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MansfieldMEMEisTOPG3000</title>
 <meta name="description" content="Mansfield MEME is TOPG3000, the world’s worst meme coin. Buy SOL, trade on Raydium, and join the meme revolution!">
-<meta name="keywords" content="Mansfield MEME, TOPG3000, SOL, Raydium, Meme Coin, Crypto, Phantom, MetaMask">
+<meta name="keywords" content="Mansfield MEME, TOPG3000, SOL, Raydium, Meme Coin, Crypto, Phantom, WalletConnect">
 <style>
   body {
     background: linear-gradient(135deg, black 50%, #FFD700 50%);
@@ -39,39 +39,39 @@
     margin-bottom: 10px;
   }
 
-  .wallet-connect-box {
+  .qr-box {
     display: inline-block;
     background: #1e1e1e;
     color: #fff;
     padding: 15px;
     margin: 15px;
     border-radius: 12px;
-    max-width: 300px;
+    max-width: 220px;
     vertical-align: top;
-    text-align: center;
   }
 
-  .wallet-connect-box h3 {
+  .qr-box h3 {
     margin: 0 0 10px 0;
+    font-size: 1.1em;
   }
 
-  .wallet-connect-box button, .wallet-connect-box a {
-    margin-top: 10px;
-    padding: 8px 15px;
-    background: #ffcc00;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
+  .qr-box a, .qr-box button {
     display: block;
+    margin: 5px 0;
+    padding: 8px 10px;
+    background: #ffcc00;
+    color: #000;
     text-decoration: none;
-    color: black;
+    font-weight: bold;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
   }
 
-  .wallet-connect-box img {
+  .qr-box img {
     width: 150px;
     height: 150px;
-    margin-top: 10px;
+    margin: 5px 0;
   }
 
   .token-text {
@@ -83,13 +83,22 @@
     text-shadow: 1px 1px #000;
   }
 
-  /* Mobile adjustments */
-  @media (max-width: 600px) {
-    .wallet-connect-box {
-      max-width: 80%;
-      margin: 10px auto;
-    }
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
   }
+
+  /* Floating positions for mobile/desktop */
+  #walletConnectBox { position: fixed; top: 20px; left: 20px; z-index: 1000; }
+  #phantomBuyBox { position: fixed; bottom: 20px; right: 20px; z-index: 1000; }
+
+  @media(max-width: 600px){
+    #walletConnectBox, #phantomBuyBox { position: static; margin: 10px auto; }
+  }
+
 </style>
 </head>
 <body>
@@ -100,41 +109,35 @@
   <div class="contract">Contract Address: B2UTCkP2aErWowwwkNt8HAhMQ8Q9QqrJGKCb5t55cooB</div>
   <p>Available on Raydium.io!</p>
 
-  <div class="wallet-connect-box" style="position: absolute; top: 20px; left: 20px;">
-    <h3>WalletConnect (Mobile)</h3>
-    <button id="connectWC">Connect</button>
-    <p id="wcStatus"></p>
-  </div>
+  <div class="container">
+    <!-- Raydium Swap QR + Link -->
+    <div class="qr-box">
+      <h3>Trade TOPG on Raydium</h3>
+      <a href="https://raydium.io/swap/?inputMint=sol&outputMint=B2UTCkP2aErWowwwkNt8HAhMQ8Q9QqrJGKCb5t55cooB&referrer=BksFTNiEpv1Cddv9RBMjQk2yaN6f6BAL73hTNsxdT9mE" target="_blank">Go to Raydium</a>
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://raydium.io/swap/?inputMint=sol&outputMint=B2UTCkP2aErWowwwkNt8HAhMQ8Q9QqrJGKCb5t55cooB&referrer=BksFTNiEpv1Cddv9RBMjQk2yaN6f6BAL73hTNsxdT9mE" alt="Raydium QR">
+    </div>
 
-  <div class="wallet-connect-box" style="position: absolute; bottom: 20px; right: 20px;">
-    <h3>MetaMask Wallet</h3>
-    <button id="connectMetaMask">Connect</button>
-    <p id="metaStatus" style="color: black;">MetaMask (Top up with SOL)</p>
-  </div>
+    <!-- Phantom Wallet Download -->
+    <div class="qr-box">
+      <h3>Download Phantom</h3>
+      <a href="https://phantom.app/" target="_blank">Download</a>
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://phantom.app/" alt="Phantom Download QR">
+    </div>
 
-  <div class="wallet-connect-box">
-    <h3>Phantom Wallet</h3>
-    <a href="https://phantom.app/" target="_blank">Visit Phantom</a>
-    <p id="phantomStatus">Scan QR to visit Phantom</p>
-    <img src="https://api.qrserver.com/v1/create-qr-code/?data=https://phantom.app/&size=150x150" alt="Phantom QR">
-  </div>
+    <!-- Phantom Wallet Buy TOPG -->
+    <div class="qr-box" id="phantomBuyBox">
+      <h3>Buy TOPG</h3>
+      <a href="https://phantom.app/ul/buy?to=BksFTNiEpv1Cddv9RBMjQk2yaN6f6BAL73hTNsxdT9mE&amount=1" target="_blank">Send 1 SOL</a>
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://phantom.app/ul/buy?to=BksFTNiEpv1Cddv9RBMjQk2yaN6f6BAL73hTNsxdT9mE&amount=1" alt="Phantom Buy 1 SOL QR">
+    </div>
 
-  <!-- MetaMask Quick 1 SOL -->
-  <div class="wallet-connect-box">
-    <h3>MetaMask Quick 1 SOL</h3>
-    <a href="https://raydium.io/swap/?inputMint=sol&outputMint=B2UTCkP2aErWowwwkNt8HAhMQ8Q9QqrJGKCb5t55cooB&amount=1&referrer=BksFTNiEpv1Cddv9RBMjQk2yaN6f6BAL73hTNsxdT9mE" target="_blank">
-      Send 1 SOL
-    </a>
-    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://raydium.io/swap/?inputMint=sol&outputMint=B2UTCkP2aErWowwwkNt8HAhMQ8Q9QqrJGKCb5t55cooB&amount=1&referrer=BksFTNiEpv1Cddv9RBMjQk2yaN6f6BAL73hTNsxdT9mE" alt="MetaMask 1 SOL QR">
-  </div>
-
-  <!-- Phantom Quick 1 SOL -->
-  <div class="wallet-connect-box">
-    <h3>Phantom Quick 1 SOL</h3>
-    <a href="https://phantom.app/ul/trx?address=BksFTNiEpv1Cddv9RBMjQk2yaN6f6BAL73hTNsxdT9mE&amount=1&token=SOL" target="_blank">
-      Send 1 SOL
-    </a>
-    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://phantom.app/ul/trx?address=BksFTNiEpv1Cddv9RBMjQk2yaN6f6BAL73hTNsxdT9mE&amount=1&token=SOL" alt="Phantom 1 SOL QR">
+    <!-- WalletConnect -->
+    <div class="qr-box" id="walletConnectBox">
+      <h3>WalletConnect (Mobile)</h3>
+      <button id="connectWC">Connect</button>
+      <p id="wcStatus"></p>
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://raydium.io/swap/?inputMint=sol&outputMint=B2UTCkP2aErWowwwkNt8HAhMQ8Q9QqrJGKCb5t55cooB&referrer=BksFTNiEpv1Cddv9RBMjQk2yaN6f6BAL73hTNsxdT9mE" alt="WalletConnect QR">
+    </div>
   </div>
 
   <p class="token-text">
@@ -157,27 +160,9 @@
 
 <script src="https://cdn.jsdelivr.net/npm/ethers/dist/ethers.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@walletconnect/web3-provider/dist/umd/index.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@solana/web3.js/lib/index.iife.min.js"></script>
-
 <script>
   const SOL_PAYMENT_ADDR = "BksFTNiEpv1Cddv9RBMjQk2yaN6f6BAL73hTNsxdT9mE";
-  const ETH_PAYMENT_ADDR = "0xB9a28EDE5064BF130277514F81EcF67699c198F6";
 
-  // MetaMask connect
-  document.getElementById('connectMetaMask').onclick = async () => {
-    const out = document.getElementById('metaStatus');
-    try {
-      if(!window.ethereum){ out.textContent='MetaMask not detected'; return; }
-      await window.ethereum.request({ method: 'eth_requestAccounts' });
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
-      const signer = provider.getSigner();
-      const address = await signer.getAddress();
-      const balance = await provider.getBalance(address);
-      out.textContent = `Connected\nAddress: ${address}\nETH: ${ethers.formatEther(balance)}`;
-    } catch(e){ out.textContent='Error: '+(e.message||e); }
-  };
-
-  // WalletConnect (Mobile)
   document.getElementById('connectWC').onclick = async () => {
     const out = document.getElementById('wcStatus');
     try {
@@ -189,7 +174,7 @@
       const signer = provider.getSigner();
       const address = await signer.getAddress();
       const balance = await provider.getBalance(address);
-      out.textContent = `Connected\nAddress: ${address}\nETH: ${ethers.formatEther(balance)}`;
+      out.textContent = `Connected\nAddress: ${address}\nETH: ${ethers.formatEther(balance)} (Swap 1 SOL on Raydium)`;
       wcProvider.on && wcProvider.on("disconnect", () => out.textContent='Disconnected');
     } catch(e){ out.textContent='Error: '+(e.message||e); }
   };
