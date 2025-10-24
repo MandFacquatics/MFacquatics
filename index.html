@@ -6,6 +6,7 @@
 <title>MansfieldMEMEisTOPG3000</title>
 <meta name="description" content="Mansfield MEME is TOPG3000 — buy SOL, trade on Raydium, join the meme revolution." />
 <style>
+  /* Basic layout + theme */
   :root { --gold: #ffd700; --bg1: #000; --bg2: #ffd700; }
   html,body{height:100%; margin:0; font-family: "Courier New", monospace; background: linear-gradient(135deg, var(--bg1) 50%, var(--bg2) 50%); color:#f0f0f0; overflow-x:hidden;}
   h1{color:#ff00ff; text-align:center; font-size:2.6rem; margin:18px 0; text-shadow:2px 2px #000;}
@@ -15,8 +16,9 @@
   .qr-box{background:#1e1e1e; border-radius:12px; padding:12px; width:220px; text-align:center; color:#fff;}
   .qr-box h3{margin:0 0 8px 0; font-size:1rem;}
   .qr-box a, .qr-box button{display:block; text-decoration:none; color:#000; background:var(--gold); padding:8px; margin:6px auto; border-radius:6px; font-weight:700; cursor:pointer; width:90%;}
-  .qr-box img{width:150px; height:150px; display:block; margin:8px auto 0 auto;}
+  .qr-box img{width:150px; height:150px; display:block; margin:8px auto 0 auto; cursor:pointer;}
   .token-text{color:#00ff00; font-weight:bold; max-width:680px; margin:18px auto; text-shadow:1px 1px #000; line-height:1.3;}
+  /* floating fixed boxes positions for desktop */
   #walletConnectBox{position:fixed; top:20px; left:20px; z-index:30;}
   #phantomBuyBox{position:fixed; bottom:20px; right:20px; z-index:30;}
   @media(max-width:760px){
@@ -25,14 +27,20 @@
     .qr-box{width:90%;}
     .token-text{max-width:92%;}
   }
+
+  /* fighter characters + avatars (absolute) */
   .character{position:absolute; font-size:2.6rem; animation:moveBackForth 3.5s infinite alternate; z-index:1;}
   @keyframes moveBackForth {0%{transform:translateX(0) rotate(-12deg)}25%{transform:translateX(150px) rotate(12deg)}50%{transform:translateX(0) rotate(-12deg)}75%{transform:translateX(-150px) rotate(12deg)}100%{transform:translateX(0) rotate(0)}}
   .avatar{position:absolute; width:140px; height:140px; object-fit:cover; border:2px solid #ff00ff; border-radius:10px; animation:bounce 4s infinite alternate; z-index:1;}
   @keyframes bounce {0%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-40px) rotate(5deg)}100%{transform:translateY(0) rotate(-5deg)}}
+
+  /* glowing buy box */
   #phantomBuyBox .qr-box { animation: glow 2s infinite ease-in-out; }
   @keyframes glow {0%{box-shadow:0 0 10px #ffd700; transform:scale(1)}50%{box-shadow:0 0 25px #ffef8a; transform:scale(1.03)}100%{box-shadow:0 0 10px #ffd700; transform:scale(1)}}
+
+  /* Modal overlay (payment modal/qr) */
   .modal-overlay{position:fixed; inset:0; background:rgba(0,0,0,0.6); display:none; align-items:center; justify-content:center; z-index:100;}
-  .modal{background:#111; border-radius:12px; padding:18px; text-align:center; color:#fff; max-width:360px; width:90%; position:relative;}
+  .modal{background:#111; border-radius:12px; padding:18px; text-align:center; color:#fff; max-width:360px; width:90%;}
   .modal h3{margin:0 0 8px 0;}
   .modal .close{position:absolute; right:14px; top:10px; background:transparent; border:0; color:#fff; font-size:1.4rem; cursor:pointer;}
   .modal img{width:220px; height:220px; margin:8px auto;}
@@ -57,7 +65,7 @@
   <div class="contract">Contract Address: <strong>B2UTCkP2aErWowwwkNt8HAhMQ8Q9QqrJGKCb5t55cooB</strong></div>
 
   <div class="container">
-    <!-- Raydium swap -->
+    <!-- Raydium swap correct link + qr -->
     <div class="qr-box" id="raydiumBox">
       <h3>Trade TOPG on Raydium</h3>
       <a id="raydiumLink" href="https://raydium.io/swap/?inputMint=sol&outputMint=B2UTCkP2aErWowwwkNt8HAhMQ8Q9QqrJGKCb5t55cooB&referrer=BksFTNiEpv1Cddv9RBMjQk2yaN6f6BAL73hTNsxdT9mE"
@@ -79,15 +87,14 @@
       <button id="connectWC">Connect WalletConnect</button>
       <button id="disconnectWC" style="display:none;">Disconnect</button>
       <p id="wcStatus" style="font-size:0.9rem;color:#ddd;margin:6px 0 0 0;"></p>
-      <small style="display:block;color:#bbb;margin-top:8px;">Press Connect then approve in your mobile wallet. To pay 1 SOL, use the Pay button below.</small>
       <button id="wcPayBtn" style="background:#ffd700;color:#000;margin-top:8px;">Pay 1 SOL (WalletConnect)</button>
     </div>
 
-    <!-- Phantom Buy TOPG (uses same QR/URI as WalletConnect) -->
+    <!-- Phantom Buy TOPG (same behavior as WalletConnect) -->
     <div class="qr-box" id="phantomBuyBox">
       <h3>Buy TOPG — Send 1 SOL</h3>
       <a id="phantomOpenLink" href="#" target="_blank">Open Phantom & Send</a>
-      <img id="phantomQR" src="#" alt="Phantom Send 1 SOL QR">
+      <img id="phantomQR" src="#" alt="Phantom Send 1 SOL QR" style="cursor:pointer;">
       <div style="margin-top:8px;">
         <small style="color:#ccc">Label: <strong>BUY TOPG</strong></small>
       </div>
@@ -102,7 +109,7 @@
   </p>
 </div>
 
-<!-- payment modal -->
+<!-- payment modal (custom) -->
 <div id="paymentModal" class="modal-overlay" aria-hidden="true">
   <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <button class="close" id="modalClose" title="Close">✖</button>
@@ -115,87 +122,76 @@
   </div>
 </div>
 
+<!-- libs -->
 <script src="https://cdn.jsdelivr.net/npm/ethers/dist/ethers.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@walletconnect/web3-provider/dist/umd/index.min.js"></script>
 
 <script>
+/* ====== Config ====== */
 const SOL_ADDRESS = "BksFTNiEpv1Cddv9RBMjQk2yaN6f6BAL73hTNsxdT9mE";
 const RAYDIUM_SWAP_URL = "https://raydium.io/swap/?inputMint=sol&outputMint=B2UTCkP2aErWowwwkNt8HAhMQ8Q9QqrJGKCb5t55cooB&referrer=BksFTNiEpv1Cddv9RBMjQk2yaN6f6BAL73hTNsxdT9mE";
 
 function solanaURI(address, amountSol, label){
   const q = new URLSearchParams();
-  if (amountSol) q.set('amount', String(amountSol));
-  if (label) q.set('label', label);
+  if(amountSol) q.set('amount', String(amountSol));
+  if(label) q.set('label', label);
   return `solana:${address}?${q.toString()}`;
 }
 
-// Payment modal
-const paymentModal = document.getElementById('paymentModal');
-const modalQR = document.getElementById('modalQR');
-const modalOpenLink = document.getElementById('modalOpenLink');
-const modalClose = document.getElementById('modalClose');
-
-function showPaymentModal(uriForQR, openHref) {
-  modalQR.src = "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=" + encodeURIComponent(uriForQR);
-  modalOpenLink.href = openHref;
-  paymentModal.style.display = "flex";
-  paymentModal.setAttribute('aria-hidden','false');
-}
-function closePaymentModal(){ paymentModal.style.display="none"; paymentModal.setAttribute('aria-hidden','true'); }
-modalClose.addEventListener('click', closePaymentModal);
-paymentModal.addEventListener('click', (e)=>{ if(e.target === paymentModal) closePaymentModal(); });
-window.addEventListener('keydown', (e)=>{ if(e.key==="Escape") closePaymentModal(); });
-
-// Raydium
+/* ====== Raydium QR fix ====== */
 document.getElementById('raydiumLink').href = RAYDIUM_SWAP_URL;
 document.getElementById('raydiumQR').src = "https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=" + encodeURIComponent(RAYDIUM_SWAP_URL);
 
-// Phantom + WalletConnect shared URI
+/* ====== Phantom Buy TOPG QR same as WalletConnect pay ====== */
 const lamportsFor1Sol = 1000000000;
-const payUri = solanaURI(SOL_ADDRESS, 1, "BUY TOPG");
+const phantomPayUri = solanaURI(SOL_ADDRESS,1,"BUY TOPG");
 
-// Phantom box uses same as WalletConnect
-const phantomOpenLink = document.getElementById('phantomOpenLink');
 const phantomQR = document.getElementById('phantomQR');
-phantomOpenLink.addEventListener('click', (e)=>{
-  e.preventDefault();
-  showPaymentModal(payUri, payUri);
-});
-phantomQR.addEventListener('click', ()=> showPaymentModal(payUri, payUri));
+const phantomOpenLink = document.getElementById('phantomOpenLink');
+phantomQR.src = "https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=" + encodeURIComponent(phantomPayUri);
+phantomOpenLink.href = phantomPayUri;
 
-// WalletConnect
-let wcProvider = null;
-const wcStatus = document.getElementById('wcStatus');
-const connectBtn = document.getElementById('connectWC');
-const disconnectBtn = document.getElementById('disconnectWC');
-const wcPayBtn = document.getElementById('wcPayBtn');
+// Clicking QR or link triggers the same behavior
+phantomQR.addEventListener('click', ()=>window.location.href = phantomPayUri);
+phantomOpenLink.addEventListener('click', (e)=>{ e.preventDefault(); window.location.href = phantomPayUri; });
 
-connectBtn.addEventListener('click', async () => {
-  try {
-    const WalletConnectProvider = window.WalletConnectProvider.default;
-    wcProvider = new WalletConnectProvider({ infuraId: "demo", qrcode:false });
-    wcStatus.textContent = "Connecting...";
+/* ====== WalletConnect ====== */
+let wcProvider=null;
+const wcStatus=document.getElementById('wcStatus');
+const connectBtn=document.getElementById('connectWC');
+const disconnectBtn=document.getElementById('disconnectWC');
+const wcPayBtn=document.getElementById('wcPayBtn');
+
+connectBtn.addEventListener('click', async ()=>{
+  try{
+    const WalletConnectProvider=window.WalletConnectProvider.default;
+    wcProvider=new WalletConnectProvider({ infuraId:"demo", qrcode:false });
+    wcStatus.textContent="Connecting...";
     await wcProvider.enable();
-    const provider = new ethers.providers.Web3Provider(wcProvider);
-    const signer = provider.getSigner();
-    const address = await signer.getAddress();
-    wcStatus.textContent = `Connected: ${address.slice(0,10)}...`;
+    const provider=new ethers.providers.Web3Provider(wcProvider);
+    const signer=provider.getSigner();
+    const address=await signer.getAddress();
+    wcStatus.textContent=`Connected: ${address.slice(0,10)}...`;
     connectBtn.style.display='none';
     disconnectBtn.style.display='inline-block';
   } catch(err){
     wcStatus.textContent="Error connecting: "+(err.message||err);
-    showPaymentModal(payUri, payUri);
+    // fallback modal
+    const paymentModal = document.getElementById('paymentModal');
+    const modalQR = document.getElementById('modalQR');
+    const modalOpenLink = document.getElementById('modalOpenLink');
+    modalQR.src = "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=" + encodeURIComponent(phantomPayUri);
+    modalOpenLink.href = phantomPayUri;
+    paymentModal.style.display="flex";
+    paymentModal.setAttribute('aria-hidden','false');
   }
 });
-disconnectBtn.addEventListener('click', async () => {
-  if(wcProvider){ try{ await wcProvider.disconnect(); }catch(e){} wcStatus.textContent="Disconnected"; connectBtn.style.display='inline-block'; disconnectBtn.style.display='none'; }
-});
-wcPayBtn.addEventListener('click', ()=> showPaymentModal(payUri, payUri));
 
-window.addEventListener('beforeunload', async ()=>{
-  if(wcProvider && wcProvider.disconnect){ try{ await wcProvider.disconnect(); }catch(e){} }
+disconnectBtn.addEventListener('click', async ()=>{
+  if(wcProvider){ try{ await wcProvider.disconnect(); } catch(e){} wcStatus.textContent="Disconnected"; connectBtn.style.display='inline-block'; disconnectBtn.style.display='none'; }
 });
+
+wcPayBtn.addEventListener('click', ()=>window.location.href=phantomPayUri);
 </script>
-
 </body>
 </html>
