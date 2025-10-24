@@ -4,16 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MansfieldMEMEisTOPG3000</title>
-<meta name="description" content="Mansfield MEME is TOPG3000, the world’s worst meme coin. Buy SOL, trade on Raydium, and join the meme revolution!">
-<meta name="keywords" content="Mansfield MEME, TOPG3000, SOL, Raydium, Meme Coin, Crypto, Phantom, WalletConnect">
 <style>
   body {
     background: linear-gradient(135deg, black 50%, #FFD700 50%);
     color: #f0f0f0;
     font-family: 'Courier New', monospace;
+    margin: 0; padding: 0;
     overflow-x: hidden;
-    margin: 0;
-    padding: 0;
   }
   h1 {
     color: #ff00ff;
@@ -22,62 +19,23 @@
     text-align: center;
     margin-top: 20px;
   }
-  .foreground { text-align: center; margin: 20px; }
-  .contract { font-weight: bold; font-size: 1.3em; margin-bottom: 10px; }
-  .qr-box {
-    display: inline-block;
-    background: #1e1e1e;
-    color: #fff;
-    padding: 15px;
-    margin: 15px;
-    border-radius: 12px;
-    max-width: 220px;
-    vertical-align: top;
-    transition: box-shadow 0.4s ease-in-out, transform 0.3s ease-in-out;
-  }
-  .qr-box h3 { margin: 0 0 10px 0; font-size: 1.1em; }
-  .qr-box a, .qr-box button {
-    display: block;
-    margin: 5px 0;
-    padding: 8px 10px;
-    background: #ffcc00;
-    color: #000;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 5px;
-    text-align: center;
-    cursor: pointer;
-  }
-  .qr-box img {
-    width: 150px; height: 150px; margin: 5px 0;
-  }
-  .token-text {
-    font-size: 1.1em;
-    font-weight: bold;
-    color: #00ff00;
-    max-width: 600px;
-    margin: 15px auto;
-    text-shadow: 1px 1px #000;
-  }
   .container {
-    display: flex; flex-wrap: wrap;
-    justify-content: center; gap: 20px;
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;
   }
-  #walletConnectBox { position: fixed; top: 20px; left: 20px; z-index: 1000; }
-  #phantomBuyBox { position: fixed; bottom: 20px; right: 20px; z-index: 1000; }
-
-  /* ✨ Glow effect for Buy TOPG box */
-  #phantomBuyBox {
-    animation: glow 2s infinite ease-in-out;
+  .qr-box {
+    background: #1e1e1e; padding: 15px; border-radius: 12px;
+    text-align: center; color: #fff; width: 220px;
   }
+  .qr-box a, .qr-box button {
+    display: block; background: #ffcc00; color: #000; font-weight: bold;
+    margin: 5px 0; padding: 8px; border-radius: 5px; text-decoration: none;
+  }
+  .qr-box img { width: 150px; height: 150px; margin: 5px 0; }
+  #phantomBuyBox { animation: glow 2s infinite ease-in-out; }
   @keyframes glow {
-    0% { box-shadow: 0 0 10px #ffd700; transform: scale(1); }
-    50% { box-shadow: 0 0 25px #ffef8a; transform: scale(1.05); }
-    100% { box-shadow: 0 0 10px #ffd700; transform: scale(1); }
-  }
-
-  @media(max-width: 600px){
-    #walletConnectBox, #phantomBuyBox { position: static; margin: 10px auto; }
+    0%{box-shadow:0 0 10px #ffd700;transform:scale(1);}
+    50%{box-shadow:0 0 25px #ffef8a;transform:scale(1.05);}
+    100%{box-shadow:0 0 10px #ffd700;transform:scale(1);}
   }
 </style>
 </head>
@@ -85,87 +43,91 @@
 
 <h1>MansfieldMEMEisTOPG3000</h1>
 
-<div class="foreground">
-  <div class="contract">Contract Address: B2UTCkP2aErWowwwkNt8HAhMQ8Q9QqrJGKCb5t55cooB</div>
-  <p>Available on Raydium.io!</p>
+<div class="container">
 
-  <div class="container">
-    <!-- Raydium Swap -->
-    <div class="qr-box">
-      <h3>Trade TOPG on Raydium</h3>
-      <a href="https://raydium.io/swap/?inputMint=sol&outputMint=B2UTCkP2aErWowwwkNt8HAhMQ8Q9QqrJGKCb5t55cooB&referrer=BksFTNiEpv1Cddv9RBMjQk2yaN6f6BAL73hTNsxdT9mE" target="_blank">Go to Raydium</a>
-      <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://raydium.io/swap/?inputMint=sol&outputMint=B2UTCkP2aErWowwwkNt8HAhMQ8Q9QqrJGKCb5t55cooB&referrer=BksFTNiEpv1Cddv9RBMjQk2yaN6f6BAL73hTNsxdT9mE" alt="Raydium QR">
-    </div>
-
-    <!-- Phantom Wallet Download -->
-    <div class="qr-box">
-      <h3>Download Phantom</h3>
-      <a href="https://phantom.app/" target="_blank">Download</a>
-      <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://phantom.app/" alt="Phantom Download QR">
-    </div>
-
-    <!-- Phantom Buy TOPG -->
-    <div class="qr-box" id="phantomBuyBox">
-      <h3>Buy TOPG (Send 1 SOL)</h3>
-      <a href="https://phantom.app/ul/send?recipient=BksFTNiEpv1Cddv9RBMjQk2yaN6f6BAL73hTNsxdT9mE&amount=1&token=SOL&network=mainnet-beta" target="_blank">Open Phantom</a>
-      <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://phantom.app/ul/send?recipient=BksFTNiEpv1Cddv9RBMjQk2yaN6f6BAL73hTNsxdT9mE&amount=1&token=SOL&network=mainnet-beta" alt="Phantom Send 1 SOL QR">
-    </div>
-
-    <!-- WalletConnect -->
-    <div class="qr-box" id="walletConnectBox">
-      <h3>WalletConnect (Mobile)</h3>
-      <button id="connectWC">Connect</button>
-      <button id="disconnectWC" style="display:none;">Disconnect</button>
-      <p id="wcStatus"></p>
-      <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://raydium.io/swap/?inputMint=sol&outputMint=B2UTCkP2aErWowwwkNt8HAhMQ8Q9QqrJGKCb5t55cooB&referrer=BksFTNiEpv1Cddv9RBMjQk2yaN6f6BAL73hTNsxdT9mE" alt="WalletConnect QR">
-    </div>
+  <!-- Raydium -->
+  <div class="qr-box">
+    <h3>Trade on Raydium</h3>
+    <a href="https://raydium.io/swap/?inputMint=sol&outputMint=B2UTCkP2aErWowwwkNt8HAhMQ8Q9QqrJGKCb5t55cooB&referrer=BksFTNiEpv1Cddv9RBMjQk2yaN6f6BAL73hTNsxdT9mE" target="_blank">
+      Go to Raydium
+    </a>
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://raydium.io/swap/?inputMint=sol&outputMint=B2UTCkP2aErWowwwkNt8HAhMQ8Q9QqrJGKCb5t55cooB&referrer=BksFTNiEpv1Cddv9RBMjQk2yaN6f6BAL73hTNsxdT9mE" alt="Raydium QR">
   </div>
 
-  <p class="token-text">
-    Why did the poorest town of Old Manfield start mining memes? Because they said laughter pays better than gold. 
-    Think poor stay poor. Introducing MansfieldMEMEisTOPG—the world’s worst meme coin. 
-    Powered by forgotten GIFs, cursed Vines, and pure optimism. Price only goes up… in spirit, if not in your wallet. 
-    Old Memetics: where broke meets blockchain hilarity.
-  </p>
+  <!-- Phantom Download -->
+  <div class="qr-box">
+    <h3>Download Phantom</h3>
+    <a href="https://phantom.app/" target="_blank">Download</a>
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://phantom.app/" alt="Phantom Download QR">
+  </div>
+
+  <!-- Phantom 1 SOL send -->
+  <div class="qr-box" id="phantomBuyBox">
+    <h3>Buy TOPG (Send 1 SOL)</h3>
+    <a href="https://phantom.app/ul/v1/send?recipient=BksFTNiEpv1Cddv9RBMjQk2yaN6f6BAL73hTNsxdT9mE&amount=1000000000&reference=MansfieldMEMEisTOPG3000&token=SOL&network=mainnet-beta"
+       target="_blank">Send 1 SOL</a>
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://phantom.app/ul/v1/send?recipient=BksFTNiEpv1Cddv9RBMjQk2yaN6f6BAL73hTNsxdT9mE&amount=1000000000&reference=MansfieldMEMEisTOPG3000&token=SOL&network=mainnet-beta"
+         alt="Phantom 1 SOL QR">
+  </div>
+
+  <!-- WalletConnect -->
+  <div class="qr-box">
+    <h3>WalletConnect</h3>
+    <button id="connectWC">Connect</button>
+    <button id="disconnectWC" style="display:none;">Disconnect</button>
+    <p id="wcStatus"></p>
+  </div>
+
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/ethers/dist/ethers.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@walletconnect/web3-provider/dist/umd/index.min.js"></script>
 <script>
-  let wcProvider;
-  const out = document.getElementById('wcStatus');
-  const connectBtn = document.getElementById('connectWC');
-  const disconnectBtn = document.getElementById('disconnectWC');
+let wcProvider;
+const statusEl = document.getElementById('wcStatus');
+const connectBtn = document.getElementById('connectWC');
+const disconnectBtn = document.getElementById('disconnectWC');
 
-  connectBtn.onclick = async () => {
-    try {
-      const WalletConnectProvider = window.WalletConnectProvider.default;
-      wcProvider = new WalletConnectProvider({ infuraId:"ENTER_YOUR_INFURA_ID" });
-      out.textContent = 'Connecting WalletConnect...';
-      await wcProvider.enable();
-      const provider = new ethers.providers.Web3Provider(wcProvider);
-      const signer = provider.getSigner();
-      const address = await signer.getAddress();
-      const balance = await provider.getBalance(address);
-      out.textContent = `Connected: ${address.slice(0,8)}... Balance: ${ethers.formatEther(balance)} ETH`;
-      connectBtn.style.display = 'none';
-      disconnectBtn.style.display = 'block';
-      wcProvider.on("disconnect", () => {
-        out.textContent = 'Disconnected';
-        connectBtn.style.display = 'block';
-        disconnectBtn.style.display = 'none';
-      });
-    } catch(e){ out.textContent = 'Error: '+(e.message||e); }
-  };
+connectBtn.onclick = async () => {
+  try {
+    const WalletConnectProvider = window.WalletConnectProvider.default;
+    wcProvider = new WalletConnectProvider({ infuraId: "demo" });
+    statusEl.textContent = "Connecting WalletConnect...";
+    await wcProvider.enable();
 
-  disconnectBtn.onclick = async () => {
-    if (wcProvider) {
-      await wcProvider.disconnect();
-      out.textContent = 'Disconnected';
-      connectBtn.style.display = 'block';
-      disconnectBtn.style.display = 'none';
-    }
-  };
+    const provider = new ethers.providers.Web3Provider(wcProvider);
+    const signer = provider.getSigner();
+    const address = await signer.getAddress();
+    statusEl.textContent = `Connected: ${address.slice(0,8)}...`;
+    connectBtn.style.display = "none";
+    disconnectBtn.style.display = "block";
+
+    wcProvider.on("disconnect", () => {
+      statusEl.textContent = "Disconnected";
+      connectBtn.style.display = "block";
+      disconnectBtn.style.display = "none";
+    });
+
+    // Close modal on ESC or outside click
+    window.addEventListener("keydown", e => { if(e.key==="Escape") wcProvider.disconnect(); });
+    document.addEventListener("click", e => {
+      if (!e.target.closest(".qr-modal")) wcProvider.disconnect();
+    });
+
+  } catch(e){
+    statusEl.textContent = "Error: " + e.message;
+  }
+};
+
+disconnectBtn.onclick = async () => {
+  if (wcProvider) {
+    await wcProvider.disconnect();
+    statusEl.textContent = "Disconnected";
+    connectBtn.style.display = "block";
+    disconnectBtn.style.display = "none";
+  }
+};
 </script>
+
 </body>
 </html>
