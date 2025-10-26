@@ -23,7 +23,12 @@ header {
 .inquiry-form h2{color:#e0f7ff; margin-bottom:15px;}
 .inquiry-form input,.inquiry-form textarea{width:100%;padding:12px;margin-bottom:12px;border:none;border-radius:4px;font-size:1em;}
 .inquiry-form button{width:100%;padding:14px;background:#0074D9;border:none;border-radius:4px;font-size:1.1em;color:#fff;cursor:pointer;}
-.inquiry-form .confirmation {color:#00ff00; margin-top:12px; font-weight:bold; display:none;}
+.inquiry-form .confirmation {
+  color: #00ff00; /* bright green for visibility */
+  margin-top: 12px;
+  font-weight: bold;
+  display: none;
+}
 .social-link{text-align:center;margin-top:30px;position:relative;z-index:10;}
 .social-link a.facebook{
   color:#00cfff;
@@ -126,7 +131,7 @@ header {
 </div>
 
 <script>
-// Formspree confirmation
+// Formspree submission with confirmation and auto-hide
 const form = document.getElementById('contactForm');
 const confirmation = document.getElementById('confirmation');
 
@@ -142,6 +147,8 @@ form.addEventListener('submit', function(e){
     if(response.ok){
       confirmation.style.display = 'block';
       form.reset();
+      // Auto-hide after 5 seconds
+      setTimeout(() => { confirmation.style.display = 'none'; }, 5000);
     } else {
       alert('Oops! There was a problem sending your message.');
     }
