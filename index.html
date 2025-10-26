@@ -1,79 +1,41 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8" />
 <title>M F Aquatics</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1" />
 <style>
-body {
-  margin:0; padding:0; background:#001f3f; font-family: Arial,sans-serif; overflow-x:hidden;
-}
-header {
-  text-align:center; padding:40px 20px; font-size:2.8em; font-weight:bold; z-index:10; position:relative; color:#e0f7ff; text-shadow:1px 1px 3px rgba(0,0,0,0.7);
-}
-.fish-canvas { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0; }
-.content { position:relative; z-index:10; max-width:1000px; margin:auto; min-height:100vh; background:rgba(0,0,0,0.2); padding:20px; border-radius:8px; }
-.hero-image { text-align:center; margin:40px 0; background:linear-gradient(135deg,#00cfff,#0059b3); padding:60px 20px; border-radius:8px; position:relative; }
-.hero-overlay { position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.25); border-radius:8px; z-index:0; }
-.hero-image h1, .hero-image p, .welcome-message { position:relative; z-index:1; color:#e0f7ff; text-shadow:1px 1px 3px rgba(0,0,0,0.7); }
-.hero-image h1{font-size:2em;margin:0;}
-.hero-image p{font-size:1.2em;margin-top:10px;}
-.welcome-message{margin-top:15px; line-height:1.5em;}
-.inquiry-form { background:rgba(0,0,0,0.7); padding:30px; border-radius:8px; max-width:450px; margin:40px auto; z-index:10; position:relative; }
-.inquiry-form h2{color:#e0f7ff; margin-bottom:15px;}
-.inquiry-form label {
-  color: #ffffff; /* white labels */
-  font-weight: bold;
-  margin-bottom: 4px;
-  display: block;
-}
-.inquiry-form small {
-  color: #e0f7ff; /* explanatory text lighter */
-}
-.inquiry-form input,.inquiry-form textarea{width:100%;padding:12px;margin-bottom:12px;border:none;border-radius:4px;font-size:1em;}
-.inquiry-form button{width:100%;padding:14px;background:#0074D9;border:none;border-radius:4px;font-size:1.1em;color:#fff;cursor:pointer;}
-.inquiry-form .confirmation {
-  color: #ffffff; /* white confirmation */
-  margin-top: 12px;
-  font-weight: bold;
-  display: none;
-}
-.social-link{text-align:center;margin-top:30px;position:relative;z-index:10;}
-.social-link a.facebook{
-  color:#00cfff;
-  text-decoration:none;
-  font-size:1.2em;
-  font-weight:bold;
-}
-.social-link a.facebook:hover{
-  color:#fff;
-}
-
-/* Product Section Style */
-.product-section {
-  margin-top:40px;
-  background:rgba(0,0,0,0.55);
-  padding:25px;
-  border-radius:8px;
-  color:#e0f7ff;
-}
-.product-section h2 {
-  text-align:center;
-  margin-bottom:15px;
-}
-.product-section h3 {
-  margin-top:15px;
-  margin-bottom:5px;
-}
-.product-section ul {
-  margin-left:20px;
-}
+  body{margin:0;padding:0;background:#001f3f;font-family:Arial,sans-serif;overflow-x:hidden}
+  header{text-align:center;padding:40px 20px;font-size:2.8em;font-weight:bold;z-index:10;position:relative;color:#e0f7ff;text-shadow:1px 1px 3px rgba(0,0,0,0.7)}
+  .fish-canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
+  .content{position:relative;z-index:10;max-width:1000px;margin:auto;min-height:100vh;background:rgba(0,0,0,0.2);padding:20px;border-radius:8px}
+  .hero-image{text-align:center;margin:40px 0;background:linear-gradient(135deg,#00cfff,#0059b3);padding:60px 20px;border-radius:8px;position:relative}
+  .hero-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.25);border-radius:8px;z-index:0}
+  .hero-image h1,.hero-image p,.welcome-message{position:relative;z-index:1;color:#e0f7ff;text-shadow:1px 1px 3px rgba(0,0,0,0.7)}
+  .hero-image h1{font-size:2em;margin:0}
+  .hero-image p{font-size:1.2em;margin-top:10px}
+  .welcome-message{margin-top:15px;line-height:1.5em}
+  .inquiry-form{background:rgba(0,0,0,0.7);padding:30px;border-radius:8px;max-width:450px;margin:40px auto;z-index:10;position:relative}
+  .inquiry-form h2{color:#e0f7ff;margin-bottom:15px}
+  .inquiry-form label{color:#ffffff;font-weight:bold;margin-bottom:4px;display:block}
+  .inquiry-form small{color:#e0f7ff}
+  .inquiry-form input,.inquiry-form textarea{width:100%;padding:12px;margin-bottom:12px;border:none;border-radius:4px;font-size:1em}
+  .inquiry-form button{width:100%;padding:14px;background:#0074D9;border:none;border-radius:4px;font-size:1.1em;color:#fff;cursor:pointer}
+  .inquiry-form .confirmation{color:#ffffff;margin-top:12px;font-weight:bold;display:none}
+  .inquiry-form .error{color:#ffdddd;background:rgba(255,0,0,0.12);padding:10px;border-radius:6px;margin-top:10px;display:none}
+  .inquiry-form .fallback{margin-top:8px;font-size:0.95em;display:none}
+  .social-link{text-align:center;margin-top:30px;position:relative;z-index:10}
+  .social-link a.facebook{color:#00cfff;text-decoration:none;font-size:1.2em;font-weight:bold}
+  .social-link a.facebook:hover{color:#fff}
+  .product-section{margin-top:40px;background:rgba(0,0,0,0.55);padding:25px;border-radius:8px;color:#e0f7ff}
+  .product-section h2{text-align:center;margin-bottom:15px}
+  .product-section h3{margin-top:15px;margin-bottom:5px}
+  .product-section ul{margin-left:20px}
 </style>
 </head>
 <body>
 
 <canvas class="fish-canvas" id="fishCanvas"></canvas>
-
 <header>M F Aquatics</header>
 
 <div class="content">
@@ -88,18 +50,25 @@ header {
 
   <div class="inquiry-form">
     <h2>Inquire / Buy</h2>
-    <form id="contactForm" action="https://formspree.io/f/maylwpze" method="POST">
+
+    <!-- Make sure action URL contains YOUR actual Formspree form ID -->
+    <form id="contactForm" action="https://formspree.io/f/maylwpze" method="POST" novalidate>
       <label for="name">1️⃣ Your Name</label>
-      <input type="text" id="name" name="name" placeholder="Insert name" required>
+      <input id="name" name="name" type="text" placeholder="Insert name" required>
 
       <label for="contact">2️⃣ Your preferred way of Contact<br><small>(Email / Facebook (Account link) / Phone (WhatsApp))</small></label>
-      <input type="text" id="contact" name="contact" placeholder="Insert contact" required>
+      <input id="contact" name="contact" type="text" placeholder="Insert contact" required>
 
       <label for="message">3️⃣ Your Message</label>
       <textarea id="message" name="message" rows="5" placeholder="Insert message" required></textarea>
 
       <button type="submit">Send Inquiry</button>
+
       <div class="confirmation" id="confirmation">✅ Message Sent! Thank you.</div>
+      <div class="error" id="errBox"></div>
+      <div class="fallback" id="fallbackBox">
+        If submission fails you can <a id="mailtoLink" href="#">send us an email manually</a>.
+      </div>
     </form>
   </div>
 
@@ -110,7 +79,6 @@ header {
 
   <div class="product-section">
     <h2>Products & Pricing</h2>
-
     <h3>3D Prints</h3>
     <ul>
       <li>Star shrimp stick holder - £3</li>
@@ -118,7 +86,6 @@ header {
       <li>Shrimp tubes - £5</li>
       <li>Plant holder (multi) - £15</li>
     </ul>
-
     <h3>Fish Food</h3>
     <ul>
       <li>the one and only 'Water cookies'':</li>
@@ -127,44 +94,123 @@ header {
         <li>40g - £7</li>
       </ul>
     </ul>
-
     <h3>Fish</h3>
     <ul>
-      <li>
-        Long Fin Bristlenose Pleco - £3.50<br>
-        <small>(Collection only – Mansfield / Nottinghamshire)</small>
-      </li>
+      <li>Long Fin Bristlenose Pleco - £3.50<br><small>(Collection only – Mansfield / Nottinghamshire)</small></li>
     </ul>
   </div>
 
 </div>
 
 <script>
-// Formspree submission with confirmation and auto-hide
+/*
+ Improved form handling:
+ - Shows specific error messages
+ - Logs response for debugging
+ - Provides mailto fallback with prefilled subject/body
+ Notes:
+  - Make sure the action URL contains your Formspree form ID (the "/f/xxxxx" part).
+  - If you're testing locally with file://, Formspree may block requests; test on GitHub Pages or a proper http(s) server.
+*/
+
 const form = document.getElementById('contactForm');
 const confirmation = document.getElementById('confirmation');
+const errBox = document.getElementById('errBox');
+const fallbackBox = document.getElementById('fallbackBox');
+const mailtoLink = document.getElementById('mailtoLink');
+
+function showError(text){
+  errBox.style.display = 'block';
+  errBox.textContent = text;
+}
+function clearError(){
+  errBox.style.display = 'none';
+  errBox.textContent = '';
+}
+function showConfirmation(){
+  confirmation.style.display = 'block';
+  // auto hide
+  setTimeout(()=> confirmation.style.display = 'none', 5000);
+}
+function showFallback(name, contact, message){
+  fallbackBox.style.display = 'block';
+  // create mailto link encoding user inputs, pointing to your inbox
+  const to = 'mfaquaticsand3dprints@gmail.com';
+  const subject = encodeURIComponent('M F Aquatics Inquiry from website');
+  const body = encodeURIComponent(
+    `Name: ${name}\nContact: ${contact}\n\nMessage:\n${message}`
+  );
+  mailtoLink.href = `mailto:${to}?subject=${subject}&body=${body}`;
+}
 
 form.addEventListener('submit', function(e){
   e.preventDefault();
+  clearError();
+  fallbackBox.style.display = 'none';
+  const name = form.elements['name'].value || '';
+  const contact = form.elements['contact'].value || '';
+  const message = form.elements['message'].value || '';
+
+  // Basic client-side validation (extra)
+  if(!name.trim() || !contact.trim() || !message.trim()){
+    showError('Please complete all fields before sending.');
+    return;
+  }
+
   const data = new FormData(form);
+
   fetch(form.action, {
-    method: form.method,
+    method: form.method || 'POST',
     body: data,
-    headers: { 'Accept': 'application/json' }
+    headers: { 'Accept': 'application/json' } // request JSON response
   })
-  .then(response => {
+  .then(async response => {
+    // Log for debugging
+    console.log('Formspree response status:', response.status);
+    let bodyText;
+    try { bodyText = await response.text(); console.log('Formspree response body:', bodyText); } catch(e){ console.warn('Could not read response body', e); }
+
     if(response.ok){
-      confirmation.style.display = 'block';
+      showConfirmation();
       form.reset();
-      setTimeout(() => { confirmation.style.display = 'none'; }, 5000);
-    } else {
-      alert('Oops! There was a problem sending your message.');
+      clearError();
+      fallbackBox.style.display = 'none';
+      return;
     }
+
+    // If we get here, request returned non-OK
+    // Try to parse JSON error details (Formspree returns 422 for validation with JSON)
+    let json;
+    try { json = JSON.parse(bodyText); } catch (err) { json = null; }
+
+    if(response.status === 422 && json && json.errors){
+      // likely validation errors
+      const errMsgs = json.errors.map(ent => ent.message || ent).join(' — ');
+      showError('Validation error: ' + errMsgs);
+      // still show fallback
+      showFallback(name, contact, message);
+      return;
+    }
+
+    if(response.status === 429){
+      showError('You are sending messages too quickly. Please wait and try again.');
+      showFallback(name, contact, message);
+      return;
+    }
+
+    // Generic error fallback
+    showError('Server error: ' + (response.status ? ('HTTP ' + response.status) : 'Unknown'));
+    showFallback(name, contact, message);
   })
-  .catch(() => { alert('Oops! There was a problem sending your message.'); });
+  .catch(err => {
+    // Network or CORS error
+    console.error('Network / fetch error:', err);
+    showError('Network error: could not reach the form service.');
+    showFallback(name, contact, message);
+  });
 });
 
-// ⭐ Fish Animation — unchanged ⭐
+/* Fish animation (unchanged) */
 const canvas = document.getElementById('fishCanvas');
 const ctx = canvas.getContext('2d');
 let width, height;
@@ -172,14 +218,79 @@ function resizeCanvas(){ width=canvas.width=window.innerWidth; height=canvas.hei
 window.addEventListener('resize', resizeCanvas);
 resizeCanvas();
 
-class Fish { constructor(){this.x=Math.random()*width; this.y=Math.random()*height; this.size=15+Math.random()*25; this.speed=1+Math.random()*2; this.angle=Math.random()*Math.PI*2; this.color=`rgba(${150+Math.random()*105}, ${100+Math.random()*155}, 255, 0.8)`; this.wigglePhase=Math.random()*Math.PI*2; this.hidden=false;} move(){if(this.hidden) return; this.x+=Math.cos(this.angle)*this.speed; this.y+=Math.sin(this.angle)*this.speed; this.wigglePhase+=0.05; const wiggleOffset=Math.sin(this.wigglePhase)*0.3; this.angle+=wiggleOffset*0.05; if(this.x>width+this.size)this.x=-this.size; if(this.x<-this.size)this.x=width+this.size; if(this.y>height+this.size)this.y=-this.size; if(this.y<-this.size)this.y=height+this.size;} draw(){if(this.hidden) return; ctx.save(); ctx.translate(this.x,this.y); ctx.rotate(this.angle); ctx.beginPath(); ctx.ellipse(0,0,this.size/2,this.size/3,0,0,Math.PI*2); ctx.fillStyle=this.color; ctx.fill(); ctx.beginPath(); ctx.moveTo(-this.size/2,0); ctx.lineTo(-this.size/2-this.size/3,this.size/4); ctx.lineTo(-this.size/2-this.size/3,-this.size/4); ctx.closePath(); ctx.fillStyle=this.color; ctx.fill(); ctx.beginPath(); ctx.arc(this.size/4,-this.size/8,this.size/10,0,Math.PI*2); ctx.fillStyle="#000"; ctx.fill(); ctx.restore();} }
-class Bubble{ constructor(){this.x=Math.random()*width; this.y=height+Math.random()*200; this.radius=2+Math.random()*6; this.speed=0.5+Math.random()*2; this.alpha=0.2+Math.random()*0.6;} move(){ this.y-=this.speed; if(this.y<-this.radius){ this.y=height+this.radius; this.x=Math.random()*width; } } draw(){ ctx.beginPath(); ctx.arc(this.x,this.y,this.radius,0,Math.PI*2); ctx.fillStyle=`rgba(255,255,255,${this.alpha})`; ctx.fill(); } }
-class BigFish { constructor(){this.size=300; this.x=-this.size; this.y=height/2; this.speed=5; this.active=false; this.angle=0; this.wigglePhase=0;} start(){this.active=true; this.x=-this.size; this.y=Math.random()*(height*0.6)+height*0.2; this.angle=Math.random()*0.2-0.1;} move(){if(!this.active) return; this.x+=this.speed; this.y+=Math.tan(this.angle)*this.speed; this.wigglePhase+=0.1; if(this.x>width+this.size) this.active=false;} draw(){if(!this.active) return; ctx.save(); ctx.translate(this.x,this.y); const tailWiggle=Math.sin(this.wigglePhase)*0.5; ctx.rotate(tailWiggle); ctx.beginPath(); ctx.ellipse(0,0,this.size,this.size/1.5,0,0,Math.PI*2); ctx.fillStyle="rgba(255,100,100,0.6)"; ctx.fill(); ctx.beginPath(); ctx.moveTo(-this.size,0); ctx.lineTo(-this.size-this.size/3,this.size/2); ctx.lineTo(-this.size-this.size/3,-this.size/2); ctx.closePath(); ctx.fillStyle="rgba(255,100,100,0.6)"; ctx.fill(); ctx.beginPath(); ctx.arc(this.size/3,-this.size/5,this.size/15,0,Math.PI*2); ctx.fillStyle="#000"; ctx.fill(); ctx.restore(); } eat(fishArray){ if(!this.active) return; for(let f of fishArray){ if(f.hidden) continue; const dx=f.x-this.x; const dy=f.y-this.y; const dist=Math.sqrt(dx*dx+dy*dy); if(dist<this.size/1.2) f.hidden=true; } } }
-const fishArray=[]; for(let i=0;i<60;i++)fishArray.push(new Fish());
-const bubbleArray=[]; for(let i=0;i<120;i++)bubbleArray.push(new Bubble());
-const bigFish=new BigFish();
-setInterval(()=>{bigFish.start();for(let f of fishArray)f.hidden=false;},9000);
-function animate(){ctx.clearRect(0,0,width,height);bubbleArray.forEach(b=>{b.move();b.draw();});fishArray.forEach(f=>{f.move();});bigFish.move();bigFish.eat(fishArray);fishArray.forEach(f=>f.draw());bigFish.draw();requestAnimationFrame(animate);}animate();
+class Fish {
+  constructor(){
+    this.x=Math.random()*width; this.y=Math.random()*height;
+    this.size=15+Math.random()*25; this.speed=1+Math.random()*2; this.angle=Math.random()*Math.PI*2;
+    this.color = `rgba(${150+Math.random()*105}, ${100+Math.random()*155}, 255, 0.8)`;
+    this.wigglePhase = Math.random()*Math.PI*2; this.hidden=false;
+  }
+  move(){
+    if(this.hidden) return;
+    this.x+=Math.cos(this.angle)*this.speed;
+    this.y+=Math.sin(this.angle)*this.speed;
+    this.wigglePhase+=0.05;
+    const wiggleOffset=Math.sin(this.wigglePhase)*0.3;
+    this.angle+=wiggleOffset*0.05;
+    if(this.x>width+this.size) this.x=-this.size;
+    if(this.x<-this.size) this.x=width+this.size;
+    if(this.y>height+this.size) this.y=-this.size;
+    if(this.y<-this.size) this.y=height+this.size;
+  }
+  draw(){
+    if(this.hidden) return;
+    ctx.save(); ctx.translate(this.x,this.y); ctx.rotate(this.angle);
+    ctx.beginPath(); ctx.ellipse(0,0,this.size/2,this.size/3,0,0,Math.PI*2); ctx.fillStyle=this.color; ctx.fill();
+    ctx.beginPath(); ctx.moveTo(-this.size/2,0); ctx.lineTo(-this.size/2-this.size/3,this.size/4); ctx.lineTo(-this.size/2-this.size/3,-this.size/4); ctx.closePath(); ctx.fillStyle=this.color; ctx.fill();
+    ctx.beginPath(); ctx.arc(this.size/4,-this.size/8,this.size/10,0,Math.PI*2); ctx.fillStyle="#000"; ctx.fill();
+    ctx.restore();
+  }
+}
+class Bubble{
+  constructor(){this.x=Math.random()*width; this.y=height+Math.random()*200; this.radius=2+Math.random()*6; this.speed=0.5+Math.random()*2; this.alpha=0.2+Math.random()*0.6;}
+  move(){ this.y-=this.speed; if(this.y<-this.radius){ this.y=height+this.radius; this.x=Math.random()*width; } }
+  draw(){ ctx.beginPath(); ctx.arc(this.x,this.y,this.radius,0,Math.PI*2); ctx.fillStyle=`rgba(255,255,255,${this.alpha})`; ctx.fill(); }
+}
+class BigFish {
+  constructor(){ this.size=300; this.x=-this.size; this.y=height/2; this.speed=5; this.active=false; this.angle=0; this.wigglePhase=0; }
+  start(){ this.active=true; this.x=-this.size; this.y=Math.random()*(height*0.6)+height*0.2; this.angle=Math.random()*0.2-0.1; }
+  move(){ if(!this.active) return; this.x+=this.speed; this.y+=Math.tan(this.angle)*this.speed; this.wigglePhase+=0.1; if(this.x>width+this.size) this.active=false; }
+  draw(){
+    if(!this.active) return;
+    ctx.save(); ctx.translate(this.x,this.y);
+    const tailWiggle = Math.sin(this.wigglePhase)*0.5;
+    ctx.rotate(tailWiggle);
+    ctx.beginPath(); ctx.ellipse(0,0,this.size,this.size/1.5,0,0,Math.PI*2); ctx.fillStyle="rgba(255,100,100,0.6)"; ctx.fill();
+    ctx.beginPath(); ctx.moveTo(-this.size,0); ctx.lineTo(-this.size-this.size/3,this.size/2); ctx.lineTo(-this.size-this.size/3,-this.size/2); ctx.closePath(); ctx.fillStyle="rgba(255,100,100,0.6)"; ctx.fill();
+    ctx.beginPath(); ctx.arc(this.size/3,-this.size/5,this.size/15,0,Math.PI*2); ctx.fillStyle="#000"; ctx.fill();
+    ctx.restore();
+  }
+  eat(fishArray){
+    if(!this.active) return;
+    for(let f of fishArray){
+      if(f.hidden) continue;
+      const dx=f.x-this.x; const dy=f.y-this.y; const dist=Math.sqrt(dx*dx+dy*dy);
+      if(dist<this.size/1.2) f.hidden=true;
+    }
+  }
+}
+
+const fishArray=[]; for(let i=0;i<60;i++) fishArray.push(new Fish());
+const bubbleArray=[]; for(let i=0;i<120;i++) bubbleArray.push(new Bubble());
+const bigFish = new BigFish();
+
+setInterval(()=>{ bigFish.start(); for(let f of fishArray) f.hidden=false; }, 9000);
+
+function animate(){
+  ctx.clearRect(0,0,width,height);
+  bubbleArray.forEach(b=>{b.move();b.draw();});
+  fishArray.forEach(f=>{f.move();});
+  bigFish.move(); bigFish.eat(fishArray);
+  fishArray.forEach(f=>f.draw());
+  bigFish.draw();
+  requestAnimationFrame(animate);
+}
+animate();
 </script>
 
 </body>
