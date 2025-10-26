@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -25,13 +25,33 @@ header {
 .inquiry-form button{width:100%;padding:14px;background:#0074D9;border:none;border-radius:4px;font-size:1.1em;color:#fff;cursor:pointer;}
 .social-link{text-align:center;margin-top:30px;position:relative;z-index:10;}
 .social-link a.facebook{
-  color:#00cfff; /* bright sky blue */
+  color:#00cfff;
   text-decoration:none;
   font-size:1.2em;
   font-weight:bold;
 }
 .social-link a.facebook:hover{
-  color:#fff; /* turns white on hover */
+  color:#fff;
+}
+
+/* Product Section Style */
+.product-section {
+  margin-top:40px;
+  background:rgba(0,0,0,0.55);
+  padding:25px;
+  border-radius:8px;
+  color:#e0f7ff;
+}
+.product-section h2 {
+  text-align:center;
+  margin-bottom:15px;
+}
+.product-section h3 {
+  margin-top:15px;
+  margin-bottom:5px;
+}
+.product-section ul {
+  margin-left:20px;
 }
 </style>
 </head>
@@ -66,6 +86,38 @@ header {
     <p>Join our Facebook group:</p>
     <a class="facebook" href="https://www.facebook.com/groups/1186463953331911" target="_blank">M F Aquatics Facebook Group</a>
   </div>
+
+  <!-- ✅ Product List Added -->
+  <div class="product-section">
+    <h2>Products & Pricing</h2>
+
+    <h3>3D Prints</h3>
+    <ul>
+      <li>Star shrimp stick holder - £3</li>
+      <li>Pumpkin shrimp stick holder - £6.50</li>
+      <li>Shrimp tubes - £5</li>
+      <li>Plant holder (multi) - £15</li>
+    </ul>
+
+    <h3>Fish Food</h3>
+    <ul>
+      <li>Wafer cookies:</li>
+      <ul>
+        <li>20g - £4</li>
+        <li>40g - £7</li>
+      </ul>
+    </ul>
+
+    <h3>Fish</h3>
+    <ul>
+      <li>
+        Long Fin Bristlenose Pleco - £3.50<br>
+        <small>(Collection only – Mansfield / Nottinghamshire)</small>
+      </li>
+    </ul>
+  </div>
+  <!-- ✅ End Product Section -->
+
 </div>
 
 <script>
@@ -114,7 +166,7 @@ class Bubble{
   draw(){ ctx.beginPath(); ctx.arc(this.x,this.y,this.radius,0,Math.PI*2); ctx.fillStyle=`rgba(255,255,255,${this.alpha})`; ctx.fill(); }
 }
 
-// Giant Fish with tail and eye
+// Giant Fish
 class BigFish {
   constructor(){
     this.size = 300; 
@@ -145,13 +197,11 @@ class BigFish {
     const tailWiggle = Math.sin(this.wigglePhase)*0.5;
     ctx.rotate(tailWiggle);
     
-    // body
     ctx.beginPath(); 
     ctx.ellipse(0,0,this.size,this.size/1.5,0,0,Math.PI*2);
     ctx.fillStyle="rgba(255,100,100,0.6)"; 
     ctx.fill();
     
-    // tail (triangle)
     ctx.beginPath();
     ctx.moveTo(-this.size,0);
     ctx.lineTo(-this.size- this.size/3,this.size/2);
@@ -160,7 +210,6 @@ class BigFish {
     ctx.fillStyle="rgba(255,100,100,0.6)";
     ctx.fill();
     
-    // eye
     ctx.beginPath();
     ctx.arc(this.size/3,-this.size/5,this.size/15,0,Math.PI*2);
     ctx.fillStyle="#000";
