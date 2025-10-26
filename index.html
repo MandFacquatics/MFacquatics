@@ -21,10 +21,19 @@ header {
 .welcome-message{margin-top:15px; line-height:1.5em;}
 .inquiry-form { background:rgba(0,0,0,0.7); padding:30px; border-radius:8px; max-width:450px; margin:40px auto; z-index:10; position:relative; }
 .inquiry-form h2{color:#e0f7ff; margin-bottom:15px;}
+.inquiry-form label {
+  color: #ffffff; /* white labels */
+  font-weight: bold;
+  margin-bottom: 4px;
+  display: block;
+}
+.inquiry-form small {
+  color: #e0f7ff; /* explanatory text lighter */
+}
 .inquiry-form input,.inquiry-form textarea{width:100%;padding:12px;margin-bottom:12px;border:none;border-radius:4px;font-size:1em;}
 .inquiry-form button{width:100%;padding:14px;background:#0074D9;border:none;border-radius:4px;font-size:1.1em;color:#fff;cursor:pointer;}
 .inquiry-form .confirmation {
-  color: #00ff00; /* bright green for visibility */
+  color: #ffffff; /* white confirmation */
   margin-top: 12px;
   font-weight: bold;
   display: none;
@@ -147,7 +156,6 @@ form.addEventListener('submit', function(e){
     if(response.ok){
       confirmation.style.display = 'block';
       form.reset();
-      // Auto-hide after 5 seconds
       setTimeout(() => { confirmation.style.display = 'none'; }, 5000);
     } else {
       alert('Oops! There was a problem sending your message.');
